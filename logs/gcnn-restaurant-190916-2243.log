@@ -1,0 +1,34 @@
+cuda memory allocated: 13273088
+n_trainable_params: 1986483, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcnn
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.asgd.ASGD'>
+>>> initializer: <function xavier_uniform_ at 0x00000224A09586A8>
+>>> learning_rate: 1
+>>> dropout: 0.5
+>>> l2reg: 1e-05
+>>> num_epoch: 1
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 4
+>>> in_channels: 600
+>>> out_channels: 4
+>>> downbot: 20
+>>> kernel_size: 4
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gated_cnn.Gated_CNN'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0

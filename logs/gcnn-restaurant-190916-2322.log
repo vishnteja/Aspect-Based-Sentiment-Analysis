@@ -1,0 +1,80 @@
+cuda memory allocated: 8070144
+n_trainable_params: 689855, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcnn
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x000001CE827986A8>
+>>> learning_rate: 1
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 10
+>>> batch_size: 50
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 300
+>>> out_channels: 1
+>>> downbot: 8
+>>> kernel_size: 10
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gated_cnn.Gated_CNN'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 146464.4675, acc: 0.4120
+loss: 120951.3619, acc: 0.4440
+loss: 197747.3510, acc: 0.4333
+loss: 1222715.3726, acc: 0.4000
+loss: 1557013.0931, acc: 0.3808
+cuda memory allocated: 14821888
+n_trainable_params: 2378779, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcnn
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x000002349F3B96A8>
+>>> learning_rate: 1
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 10
+>>> batch_size: 50
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 600
+>>> out_channels: 1
+>>> downbot: 8
+>>> kernel_size: 10
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gated_cnn.Gated_CNN'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 196746.7624, acc: 0.3880
+loss: 1366108.9249, acc: 0.3440
+loss: 16766387.1333, acc: 0.3880
+loss: 19284423.6781, acc: 0.3940
+loss: 24170450.2268, acc: 0.3800

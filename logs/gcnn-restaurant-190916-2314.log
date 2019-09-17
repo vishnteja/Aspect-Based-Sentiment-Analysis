@@ -1,0 +1,295 @@
+cuda memory allocated: 8070144
+n_trainable_params: 689855, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcnn
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.asgd.ASGD'>
+>>> initializer: <function xavier_uniform_ at 0x000001A7C31196A8>
+>>> learning_rate: 0.0003
+>>> dropout: 0.5
+>>> l2reg: 1e-05
+>>> num_epoch: 10
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 300
+>>> out_channels: 1
+>>> downbot: 8
+>>> kernel_size: 10
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gated_cnn.Gated_CNN'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.0760, acc: 0.4125
+loss: 1.0771, acc: 0.4406
+loss: 1.0742, acc: 0.4667
+loss: 1.0703, acc: 0.4875
+loss: 1.0675, acc: 0.5000
+loss: 1.0671, acc: 0.5021
+loss: 1.0684, acc: 0.4991
+loss: 1.0698, acc: 0.4930
+loss: 1.0701, acc: 0.4951
+loss: 1.0719, acc: 0.4963
+loss: 1.0749, acc: 0.4892
+loss: 1.0734, acc: 0.4927
+loss: 1.0742, acc: 0.4933
+loss: 1.0718, acc: 0.5031
+loss: 1.0718, acc: 0.5021
+loss: 1.0722, acc: 0.5035
+loss: 1.0702, acc: 0.5110
+loss: 1.0703, acc: 0.5101
+loss: 1.0687, acc: 0.5138
+loss: 1.0691, acc: 0.5181
+loss: 1.0690, acc: 0.5179
+loss: 1.0680, acc: 0.5202
+> val_acc: 0.5964, val_f1: 0.3006
+>> saved: state_dict/gcnn_restaurant_val_acc0.5964
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 1.0771, acc: 0.5000
+loss: 1.0574, acc: 0.5402
+loss: 1.0682, acc: 0.5599
+loss: 1.0727, acc: 0.5386
+loss: 1.0697, acc: 0.5426
+loss: 1.0714, acc: 0.5440
+loss: 1.0648, acc: 0.5635
+loss: 1.0625, acc: 0.5642
+loss: 1.0621, acc: 0.5677
+loss: 1.0616, acc: 0.5658
+loss: 1.0614, acc: 0.5685
+loss: 1.0585, acc: 0.5751
+loss: 1.0583, acc: 0.5756
+loss: 1.0571, acc: 0.5779
+loss: 1.0581, acc: 0.5764
+loss: 1.0580, acc: 0.5767
+loss: 1.0574, acc: 0.5766
+loss: 1.0560, acc: 0.5801
+loss: 1.0564, acc: 0.5781
+loss: 1.0565, acc: 0.5773
+loss: 1.0555, acc: 0.5781
+loss: 1.0561, acc: 0.5759
+loss: 1.0557, acc: 0.5767
+> val_acc: 0.6250, val_f1: 0.2655
+>> saved: state_dict/gcnn_restaurant_val_acc0.625
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 1.0449, acc: 0.5859
+loss: 1.0557, acc: 0.5556
+loss: 1.0531, acc: 0.5536
+loss: 1.0556, acc: 0.5477
+loss: 1.0534, acc: 0.5573
+loss: 1.0545, acc: 0.5485
+loss: 1.0506, acc: 0.5634
+loss: 1.0508, acc: 0.5641
+loss: 1.0467, acc: 0.5732
+loss: 1.0460, acc: 0.5721
+loss: 1.0455, acc: 0.5741
+loss: 1.0445, acc: 0.5784
+loss: 1.0455, acc: 0.5781
+loss: 1.0448, acc: 0.5802
+loss: 1.0443, acc: 0.5819
+loss: 1.0452, acc: 0.5815
+loss: 1.0442, acc: 0.5848
+loss: 1.0437, acc: 0.5881
+loss: 1.0431, acc: 0.5898
+loss: 1.0437, acc: 0.5906
+loss: 1.0436, acc: 0.5913
+loss: 1.0426, acc: 0.5940
+> val_acc: 0.6393, val_f1: 0.2601
+>> saved: state_dict/gcnn_restaurant_val_acc0.6393
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+loss: 1.0279, acc: 0.6250
+loss: 1.0163, acc: 0.6562
+loss: 1.0309, acc: 0.6364
+loss: 1.0340, acc: 0.6328
+loss: 1.0435, acc: 0.6012
+loss: 1.0392, acc: 0.5998
+loss: 1.0388, acc: 0.6018
+loss: 1.0381, acc: 0.6024
+loss: 1.0388, acc: 0.6029
+loss: 1.0397, acc: 0.6019
+loss: 1.0412, acc: 0.5956
+loss: 1.0406, acc: 0.5960
+loss: 1.0396, acc: 0.5968
+loss: 1.0384, acc: 0.5971
+loss: 1.0386, acc: 0.5929
+loss: 1.0372, acc: 0.5954
+loss: 1.0370, acc: 0.5938
+loss: 1.0362, acc: 0.5934
+loss: 1.0355, acc: 0.5955
+loss: 1.0360, acc: 0.5947
+loss: 1.0360, acc: 0.5947
+loss: 1.0350, acc: 0.5967
+loss: 1.0335, acc: 0.5974
+> val_acc: 0.6438, val_f1: 0.2611
+>> saved: state_dict/gcnn_restaurant_val_acc0.6438
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+loss: 1.0470, acc: 0.5312
+loss: 1.0375, acc: 0.5625
+loss: 1.0397, acc: 0.5697
+loss: 1.0335, acc: 0.5799
+loss: 1.0272, acc: 0.6005
+loss: 1.0183, acc: 0.6150
+loss: 1.0173, acc: 0.6184
+loss: 1.0214, acc: 0.6053
+loss: 1.0255, acc: 0.5952
+loss: 1.0233, acc: 0.5996
+loss: 1.0226, acc: 0.5996
+loss: 1.0199, acc: 0.6056
+loss: 1.0240, acc: 0.5957
+loss: 1.0248, acc: 0.5942
+loss: 1.0250, acc: 0.5929
+loss: 1.0214, acc: 0.5998
+loss: 1.0222, acc: 0.5960
+loss: 1.0217, acc: 0.5984
+loss: 1.0224, acc: 0.5971
+loss: 1.0204, acc: 0.5998
+loss: 1.0212, acc: 0.5989
+loss: 1.0211, acc: 0.5998
+loss: 1.0214, acc: 0.5989
+> val_acc: 0.6482, val_f1: 0.2622
+>> saved: state_dict/gcnn_restaurant_val_acc0.6482
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+loss: 1.0335, acc: 0.5563
+loss: 1.0182, acc: 0.5969
+loss: 1.0040, acc: 0.6188
+loss: 0.9981, acc: 0.6281
+loss: 1.0031, acc: 0.6225
+loss: 1.0011, acc: 0.6292
+loss: 1.0073, acc: 0.6170
+loss: 1.0055, acc: 0.6172
+loss: 1.0086, acc: 0.6111
+loss: 1.0086, acc: 0.6112
+loss: 1.0073, acc: 0.6114
+loss: 1.0072, acc: 0.6104
+loss: 1.0100, acc: 0.6053
+loss: 1.0124, acc: 0.6009
+loss: 1.0110, acc: 0.6025
+loss: 1.0100, acc: 0.6039
+loss: 1.0111, acc: 0.6018
+loss: 1.0130, acc: 0.5993
+loss: 1.0119, acc: 0.6003
+loss: 1.0130, acc: 0.5978
+loss: 1.0120, acc: 0.5973
+loss: 1.0115, acc: 0.5989
+> val_acc: 0.6482, val_f1: 0.2622
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+loss: 0.9648, acc: 0.6719
+loss: 0.9880, acc: 0.6384
+loss: 0.9780, acc: 0.6458
+loss: 0.9805, acc: 0.6360
+loss: 0.9783, acc: 0.6392
+loss: 0.9805, acc: 0.6331
+loss: 0.9858, acc: 0.6201
+loss: 0.9917, acc: 0.6115
+loss: 0.9911, acc: 0.6124
+loss: 0.9933, acc: 0.6097
+loss: 0.9918, acc: 0.6106
+loss: 0.9940, acc: 0.6086
+loss: 0.9938, acc: 0.6094
+loss: 0.9950, acc: 0.6082
+loss: 0.9973, acc: 0.6037
+loss: 0.9972, acc: 0.6043
+loss: 0.9967, acc: 0.6056
+loss: 0.9948, acc: 0.6085
+loss: 0.9955, acc: 0.6070
+loss: 0.9972, acc: 0.6031
+loss: 0.9966, acc: 0.6039
+loss: 0.9977, acc: 0.6016
+loss: 0.9987, acc: 0.6002
+> val_acc: 0.6500, val_f1: 0.2626
+>> saved: state_dict/gcnn_restaurant_val_acc0.65
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+loss: 0.9540, acc: 0.6641
+loss: 0.9727, acc: 0.6250
+loss: 0.9943, acc: 0.5938
+loss: 0.9971, acc: 0.5921
+loss: 0.9967, acc: 0.5924
+loss: 1.0005, acc: 0.5873
+loss: 0.9962, acc: 0.5919
+loss: 0.9961, acc: 0.5921
+loss: 0.9976, acc: 0.5902
+loss: 0.9965, acc: 0.5925
+loss: 0.9919, acc: 0.5984
+loss: 0.9952, acc: 0.5948
+loss: 0.9939, acc: 0.5957
+loss: 0.9975, acc: 0.5906
+loss: 0.9937, acc: 0.5959
+loss: 0.9938, acc: 0.5949
+loss: 0.9946, acc: 0.5941
+loss: 0.9936, acc: 0.5952
+loss: 0.9932, acc: 0.5951
+loss: 0.9908, acc: 0.5972
+loss: 0.9911, acc: 0.5971
+loss: 0.9890, acc: 0.5995
+> val_acc: 0.6500, val_f1: 0.2626
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+loss: 1.0110, acc: 0.5938
+loss: 0.9642, acc: 0.6354
+loss: 0.9675, acc: 0.6278
+loss: 0.9606, acc: 0.6328
+loss: 0.9660, acc: 0.6250
+loss: 0.9655, acc: 0.6250
+loss: 0.9591, acc: 0.6290
+loss: 0.9649, acc: 0.6233
+loss: 0.9626, acc: 0.6235
+loss: 0.9635, acc: 0.6223
+loss: 0.9670, acc: 0.6183
+loss: 0.9728, acc: 0.6116
+loss: 0.9741, acc: 0.6101
+loss: 0.9779, acc: 0.6046
+loss: 0.9764, acc: 0.6056
+loss: 0.9791, acc: 0.6024
+loss: 0.9758, acc: 0.6057
+loss: 0.9733, acc: 0.6094
+loss: 0.9742, acc: 0.6085
+loss: 0.9740, acc: 0.6081
+loss: 0.9742, acc: 0.6071
+loss: 0.9760, acc: 0.6052
+loss: 0.9795, acc: 0.6005
+> val_acc: 0.6500, val_f1: 0.2626
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+loss: 0.9416, acc: 0.6354
+loss: 0.9846, acc: 0.5859
+loss: 1.0011, acc: 0.5649
+loss: 1.0063, acc: 0.5556
+loss: 0.9951, acc: 0.5693
+loss: 0.9877, acc: 0.5770
+loss: 0.9895, acc: 0.5758
+loss: 0.9838, acc: 0.5847
+loss: 0.9873, acc: 0.5814
+loss: 0.9842, acc: 0.5859
+loss: 0.9789, acc: 0.5914
+loss: 0.9776, acc: 0.5932
+loss: 0.9752, acc: 0.5942
+loss: 0.9788, acc: 0.5919
+loss: 0.9823, acc: 0.5878
+loss: 0.9783, acc: 0.5933
+loss: 0.9734, acc: 0.5998
+loss: 0.9731, acc: 0.6005
+loss: 0.9749, acc: 0.5981
+loss: 0.9739, acc: 0.5985
+loss: 0.9746, acc: 0.5974
+loss: 0.9717, acc: 0.6007
+loss: 0.9726, acc: 0.5998
+> val_acc: 0.6500, val_f1: 0.2626
+>> test_acc: 0.6500, test_f1: 0.2626

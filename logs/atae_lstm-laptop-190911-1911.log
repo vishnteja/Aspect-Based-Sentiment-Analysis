@@ -1,0 +1,138 @@
+cuda memory allocated: 13845504
+n_trainable_params: 2525703, n_nontrainable_params: 934800
+> training arguments:
+>>> model_name: atae_lstm
+>>> dataset: laptop
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x0000018B3F997730>
+>>> learning_rate: 0.001
+>>> dropout: 0.1
+>>> l2reg: 0.01
+>>> num_epoch: 10
+>>> batch_size: 64
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.atae_lstm.ATAE_LSTM'>
+>>> dataset_file: {'train': './datasets/semeval14/Laptops_Train.xml.seg', 'test': './datasets/semeval14/Laptops_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.1366, acc: 0.2906
+loss: 1.0976, acc: 0.3781
+loss: 1.0538, acc: 0.4375
+loss: 1.0213, acc: 0.4750
+loss: 0.9910, acc: 0.4956
+loss: 0.9716, acc: 0.5161
+loss: 0.9541, acc: 0.5304
+> val_acc: 0.6034, val_f1: 0.4952
+>> saved: state_dict/atae_lstm_laptop_val_acc0.6034
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.7623, acc: 0.6458
+loss: 0.7711, acc: 0.6680
+loss: 0.7766, acc: 0.6562
+loss: 0.7677, acc: 0.6641
+loss: 0.7573, acc: 0.6692
+loss: 0.7513, acc: 0.6802
+loss: 0.7520, acc: 0.6813
+> val_acc: 0.6301, val_f1: 0.5005
+>> saved: state_dict/atae_lstm_laptop_val_acc0.6301
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 0.6714, acc: 0.7344
+loss: 0.7144, acc: 0.6797
+loss: 0.6839, acc: 0.7188
+loss: 0.6714, acc: 0.7275
+loss: 0.6714, acc: 0.7254
+loss: 0.6757, acc: 0.7224
+loss: 0.6790, acc: 0.7177
+loss: 0.6874, acc: 0.7148
+> val_acc: 0.6285, val_f1: 0.5559
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+loss: 0.6139, acc: 0.7305
+loss: 0.6526, acc: 0.7274
+loss: 0.6394, acc: 0.7422
+loss: 0.6478, acc: 0.7344
+loss: 0.6476, acc: 0.7409
+loss: 0.6472, acc: 0.7452
+loss: 0.6456, acc: 0.7463
+> val_acc: 0.6693, val_f1: 0.5797
+>> saved: state_dict/atae_lstm_laptop_val_acc0.6693
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+loss: 0.6574, acc: 0.7344
+loss: 0.6259, acc: 0.7567
+loss: 0.6387, acc: 0.7565
+loss: 0.6394, acc: 0.7454
+loss: 0.6162, acc: 0.7571
+loss: 0.6185, acc: 0.7517
+loss: 0.6272, acc: 0.7432
+loss: 0.6299, acc: 0.7427
+> val_acc: 0.6614, val_f1: 0.5814
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+loss: 0.5839, acc: 0.7937
+loss: 0.6036, acc: 0.7594
+loss: 0.6145, acc: 0.7521
+loss: 0.6077, acc: 0.7586
+loss: 0.6220, acc: 0.7538
+loss: 0.6196, acc: 0.7542
+loss: 0.6148, acc: 0.7562
+> val_acc: 0.6818, val_f1: 0.5994
+>> saved: state_dict/atae_lstm_laptop_val_acc0.6818
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+loss: 0.6163, acc: 0.7448
+loss: 0.6204, acc: 0.7500
+loss: 0.6067, acc: 0.7632
+loss: 0.5930, acc: 0.7656
+loss: 0.5837, acc: 0.7629
+loss: 0.5861, acc: 0.7640
+loss: 0.5845, acc: 0.7614
+> val_acc: 0.6520, val_f1: 0.5509
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+loss: 0.5894, acc: 0.7656
+loss: 0.5571, acc: 0.7812
+loss: 0.5630, acc: 0.7855
+loss: 0.5590, acc: 0.7930
+loss: 0.5649, acc: 0.7835
+loss: 0.5720, acc: 0.7788
+loss: 0.5748, acc: 0.7757
+loss: 0.5742, acc: 0.7747
+> val_acc: 0.6787, val_f1: 0.6252
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+loss: 0.5604, acc: 0.7891
+loss: 0.5604, acc: 0.7812
+loss: 0.5610, acc: 0.7824
+loss: 0.5499, acc: 0.7837
+loss: 0.5560, acc: 0.7799
+loss: 0.5450, acc: 0.7872
+loss: 0.5444, acc: 0.7849
+> val_acc: 0.6834, val_f1: 0.6078
+>> saved: state_dict/atae_lstm_laptop_val_acc0.6834
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+loss: 0.4517, acc: 0.7969
+loss: 0.5273, acc: 0.7790
+loss: 0.5149, acc: 0.8008
+loss: 0.5246, acc: 0.7904
+loss: 0.5127, acc: 0.8018
+loss: 0.5167, acc: 0.8003
+loss: 0.5100, acc: 0.8057
+loss: 0.5172, acc: 0.8015
+> val_acc: 0.6959, val_f1: 0.6479
+>> saved: state_dict/atae_lstm_laptop_val_acc0.6959
+>> test_acc: 0.6959, test_f1: 0.6479

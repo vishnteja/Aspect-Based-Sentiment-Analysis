@@ -1,0 +1,65 @@
+cuda memory allocated: 19044352
+n_trainable_params: 3428883, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcnn
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x0000027C810896A8>
+>>> learning_rate: 1
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 10
+>>> batch_size: 50
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 4
+>>> in_channels: 600
+>>> out_channels: 4
+>>> downbot: 20
+>>> kernel_size: 4
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gated_cnn.Gated_CNN'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1299686777.7352, acc: 0.2800
+loss: 198856206492.8676, acc: 0.3780
+loss: 21011092649201.1133, acc: 0.3947
+loss: 26331515725748.8320, acc: 0.3390
+loss: 1064791136867718.3750, acc: 0.3088
+loss: 25493332037352604.0000, acc: 0.3253
+loss: 37256509888118504.0000, acc: 0.3446
+loss: 38474178856568584.0000, acc: 0.3595
+loss: 38285208586153856.0000, acc: 0.3409
+loss: 36896121892911320.0000, acc: 0.3356
+loss: 35514379585548332.0000, acc: 0.3375
+loss: 32781049904360216.0000, acc: 0.3547
+loss: 30469569581536532.0000, acc: 0.3726
+loss: 28369438360974224.0000, acc: 0.3880
+> val_acc: 0.6411, val_f1: 0.2639
+>> saved: state_dict/gcnn_restaurant_val_acc0.6411
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 3281299179569152.0000, acc: 0.6100
+loss: 3129794649203858.5000, acc: 0.5629
+loss: 2865575224497493.5000, acc: 0.5133
+loss: 2526906826343364.0000, acc: 0.5106
+loss: 2737272525660904.5000, acc: 0.5282
+loss: 2517672449277952.0000, acc: 0.5296
+loss: 2284730058801152.0000, acc: 0.5419
+loss: 2077102426108014.7500, acc: 0.5530
+loss: 1955973848479451.5000, acc: 0.5581
+loss: 1891642360441049.7500, acc: 0.5600
+loss: 1833417418614626.5000, acc: 0.5638
+loss: 1770301328986615.0000, acc: 0.5674

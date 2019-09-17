@@ -1,0 +1,59 @@
+cuda memory allocated: 13960192
+n_trainable_params: 2165703, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: at_lstm
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.asgd.ASGD'>
+>>> initializer: <function xavier_uniform_ at 0x00000293115396A8>
+>>> learning_rate: 1
+>>> dropout: 0.5
+>>> l2reg: 1e-05
+>>> num_epoch: 1
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 4
+>>> in_channels: 600
+>>> out_channels: 4
+>>> downbot: 20
+>>> kernel_size: 4
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.at_lstm.AT_LSTM'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.0329, acc: 0.4938
+loss: 1.0035, acc: 0.5437
+loss: 0.9891, acc: 0.5583
+loss: 0.9782, acc: 0.5703
+loss: 0.9575, acc: 0.5813
+loss: 0.9546, acc: 0.5906
+loss: 0.9424, acc: 0.5938
+loss: 0.9413, acc: 0.5930
+loss: 0.9335, acc: 0.5951
+loss: 0.9302, acc: 0.5944
+loss: 0.9322, acc: 0.5903
+loss: 0.9317, acc: 0.5901
+loss: 0.9269, acc: 0.5899
+loss: 0.9402, acc: 0.5830
+loss: 0.9401, acc: 0.5837
+loss: 0.9386, acc: 0.5824
+loss: 0.9391, acc: 0.5824
+loss: 0.9311, acc: 0.5875
+loss: 0.9228, acc: 0.5901
+loss: 0.9189, acc: 0.5906
+loss: 0.9118, acc: 0.5946
+loss: 0.9119, acc: 0.5949
+> val_acc: 0.6500, val_f1: 0.2629
+>> saved: state_dict/at_lstm_restaurant_val_acc0.65
+>> test_acc: 0.6500, test_f1: 0.2629

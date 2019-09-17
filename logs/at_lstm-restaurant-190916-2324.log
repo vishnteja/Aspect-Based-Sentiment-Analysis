@@ -1,0 +1,76 @@
+cuda memory allocated: 13960192
+n_trainable_params: 2165703, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: at_lstm
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x00000189556096A8>
+>>> learning_rate: 0.0003
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 10
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 4
+>>> in_channels: 600
+>>> out_channels: 4
+>>> downbot: 20
+>>> kernel_size: 4
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.at_lstm.AT_LSTM'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 0.9986, acc: 0.6000
+loss: 0.9766, acc: 0.6094
+loss: 0.9792, acc: 0.5938
+loss: 0.9522, acc: 0.6016
+loss: 0.9510, acc: 0.5938
+loss: 0.9368, acc: 0.5958
+loss: 0.9297, acc: 0.5911
+loss: 0.9062, acc: 0.6000
+loss: 0.8987, acc: 0.6083
+loss: 0.8854, acc: 0.6112
+loss: 0.8791, acc: 0.6142
+loss: 0.8662, acc: 0.6203
+loss: 0.8549, acc: 0.6279
+loss: 0.8502, acc: 0.6272
+loss: 0.8427, acc: 0.6304
+loss: 0.8327, acc: 0.6344
+loss: 0.8268, acc: 0.6357
+loss: 0.8226, acc: 0.6389
+loss: 0.8191, acc: 0.6424
+loss: 0.8122, acc: 0.6466
+loss: 0.8096, acc: 0.6494
+loss: 0.8049, acc: 0.6531
+> val_acc: 0.7554, val_f1: 0.5523
+>> saved: state_dict/at_lstm_restaurant_val_acc0.7554
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.6649, acc: 0.8125
+loss: 0.6725, acc: 0.7500
+loss: 0.6587, acc: 0.7422
+loss: 0.6652, acc: 0.7316
+loss: 0.6885, acc: 0.7159
+loss: 0.6764, acc: 0.7234
+loss: 0.6736, acc: 0.7266
+loss: 0.6718, acc: 0.7255
+loss: 0.6697, acc: 0.7217
+loss: 0.6779, acc: 0.7181
+loss: 0.6750, acc: 0.7206
+loss: 0.6888, acc: 0.7138
+loss: 0.7002, acc: 0.7127
+loss: 0.6952, acc: 0.7146
+loss: 0.6941, acc: 0.7122
