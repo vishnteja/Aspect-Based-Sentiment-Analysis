@@ -14,9 +14,9 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, random_split
 
-from data_utils import build_tokenizer, build_embedding_matrix, Tokenizer4Bert, ABSADataset
+from data_utils import build_tokenizer, build_embedding_matrix, ABSADataset
 
-from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN
+from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN, GCAE, GC_IAN
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -232,7 +232,10 @@ def main():
   parser.add_argument('--hops', default=3, type=int)
   parser.add_argument('--device', default=None, type=str, help='e.g. cuda:0')
   parser.add_argument(
-      '--seed', default=None, type=int, help='set seed for reproducibility')
+      '--seed',
+      default=config.SEED,
+      type=int,
+      help='set seed for reproducibility')
   parser.add_argument(
       '--valset_ratio',
       default=config.VALSET_RATIO,
@@ -261,7 +264,9 @@ def main():
       'atae_lstm': ATAE_LSTM,
       'ian': IAN,
       'aoa': AOA,
-      'gcnn': Gated_CNN
+      'gcnn': Gated_CNN,
+      'gcae': GCAE,
+      'gc_ian': GC_IAN
   }
   dataset_files = {
       'twitter': {
@@ -291,6 +296,8 @@ def main():
       'ian': ['text_raw_indices', 'aspect_indices'],
       'aoa': ['text_raw_indices', 'aspect_indices'],
       'gcnn': ['text_raw_indices'],
+      'gcae': ['text_raw_indices', 'aspect_indices'],
+      'gc_ian': ['text_raw_indices', 'aspect_indices'],
   }
 
   initializers = {

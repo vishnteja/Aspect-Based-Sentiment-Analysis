@@ -31,6 +31,8 @@ class IAN(nn.Module):
     context, (_, _) = self.lstm_context(context, text_raw_len)
     aspect, (_, _) = self.lstm_aspect(aspect, aspect_len)
 
+    print(aspect.shape)
+    print(context.shape)
     aspect_len = torch.tensor(aspect_len, dtype=torch.float).to(self.opt.device)
     aspect_pool = torch.sum(aspect, dim=1)
     aspect_pool = torch.div(aspect_pool, aspect_len.view(aspect_len.size(0), 1))
@@ -41,6 +43,9 @@ class IAN(nn.Module):
     context_pool = torch.div(context_pool,
                              text_raw_len.view(text_raw_len.size(0), 1))
 
+    print(aspect_pool.shape)
+    print(context_pool.shape)
+    input()
     aspect_final, _ = self.attention_aspect(aspect, context_pool)
     aspect_final = aspect_final.squeeze(dim=1)
     context_final, _ = self.attention_context(context, aspect_pool)

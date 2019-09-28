@@ -1,0 +1,76 @@
+cuda memory allocated: 32726528
+n_trainable_params: 6841263, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gc_ian
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adagrad.Adagrad'>
+>>> initializer: <function xavier_uniform_ at 0x0000022EB3997620>
+>>> learning_rate: 0.01
+>>> momentum: 0.95
+>>> dropout: 0.2
+>>> l2reg: 5e-05
+>>> num_epoch: 30
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 10
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 600
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gc_ian.GC_IAN'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 17.9726, acc: 0.2812
+loss: 18.5336, acc: 0.3688
+loss: 13.7225, acc: 0.3812
+loss: 10.9541, acc: 0.4109
+loss: 8.9835, acc: 0.4475
+loss: 7.6502, acc: 0.4719
+loss: 6.6942, acc: 0.4911
+loss: 5.9855, acc: 0.4906
+loss: 5.4203, acc: 0.5083
+loss: 4.9719, acc: 0.5206
+loss: 4.6063, acc: 0.5295
+loss: 4.3006, acc: 0.5375
+loss: 4.0463, acc: 0.5418
+loss: 3.8278, acc: 0.5437
+loss: 3.6309, acc: 0.5517
+loss: 3.4688, acc: 0.5520
+loss: 3.3247, acc: 0.5515
+loss: 3.1958, acc: 0.5514
+loss: 3.0825, acc: 0.5507
+loss: 2.9782, acc: 0.5503
+loss: 2.8822, acc: 0.5530
+loss: 2.7929, acc: 0.5563
+> val_acc: 0.6500, val_f1: 0.2626
+>> saved: state_dict/gc_ian_restaurant_val_acc0.65
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.9860, acc: 0.6094
+loss: 0.9472, acc: 0.6205
+loss: 0.9478, acc: 0.6068
+loss: 0.9540, acc: 0.6029
+loss: 0.9568, acc: 0.6009
+loss: 0.9548, acc: 0.6042
+loss: 0.9534, acc: 0.6035
+loss: 0.9448, acc: 0.6081
+loss: 0.9460, acc: 0.6071
+loss: 0.9412, acc: 0.6104
+loss: 0.9510, acc: 0.6004
+loss: 0.9535, acc: 0.5976
+loss: 0.9542, acc: 0.5983
+loss: 0.9514, acc: 0.6007
+loss: 0.9528, acc: 0.5998

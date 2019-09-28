@@ -11,3 +11,5 @@ from models.at_lstm import AT_LSTM
 from models.atae_lstm import ATAE_LSTM
 from models.aoa import AOA
 from models.gated_cnn import Gated_CNN
+from models.gcae import GCAE
+from models.gc_ian import GC_IAN

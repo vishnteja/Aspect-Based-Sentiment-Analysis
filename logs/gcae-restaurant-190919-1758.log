@@ -1,0 +1,95 @@
+cuda memory allocated: 8274432
+n_trainable_params: 738283, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcae
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adagrad.Adagrad'>
+>>> initializer: <function xavier_uniform_ at 0x0000021189337620>
+>>> learning_rate: 0.01
+>>> momentum: 0.95
+>>> dropout: 0.2
+>>> l2reg: 5e-05
+>>> num_epoch: 30
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 5
+>>> kernel_size: 3
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gcae.GCAE'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 0.9865, acc: 0.5813
+loss: 0.9646, acc: 0.5938
+loss: 0.9740, acc: 0.5875
+loss: 0.9488, acc: 0.5953
+loss: 0.9186, acc: 0.6088
+loss: 0.8992, acc: 0.6177
+loss: 0.8791, acc: 0.6277
+loss: 0.8627, acc: 0.6344
+loss: 0.8628, acc: 0.6347
+loss: 0.8561, acc: 0.6406
+loss: 0.8379, acc: 0.6500
+loss: 0.8323, acc: 0.6510
+loss: 0.8184, acc: 0.6577
+loss: 0.8109, acc: 0.6621
+loss: 0.8072, acc: 0.6650
+loss: 0.8005, acc: 0.6684
+loss: 0.7975, acc: 0.6676
+loss: 0.7935, acc: 0.6687
+loss: 0.7884, acc: 0.6704
+loss: 0.7808, acc: 0.6741
+loss: 0.7732, acc: 0.6777
+loss: 0.7710, acc: 0.6784
+> val_acc: 0.7750, val_f1: 0.6291
+>> saved: state_dict/gcae_restaurant_val_acc0.775
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.5565, acc: 0.7344
+loss: 0.6566, acc: 0.7411
+loss: 0.5937, acc: 0.7786
+loss: 0.6110, acc: 0.7647
+loss: 0.6052, acc: 0.7670
+loss: 0.6285, acc: 0.7512
+loss: 0.6276, acc: 0.7549
+loss: 0.6119, acc: 0.7627
+loss: 0.6048, acc: 0.7634
+loss: 0.5999, acc: 0.7673
+loss: 0.5927, acc: 0.7710
+loss: 0.5960, acc: 0.7681
+loss: 0.5978, acc: 0.7697
+loss: 0.5954, acc: 0.7715
+loss: 0.5917, acc: 0.7717
+loss: 0.5849, acc: 0.7727
+loss: 0.5854, acc: 0.7736
+loss: 0.5869, acc: 0.7726
+loss: 0.5884, acc: 0.7717
+loss: 0.5860, acc: 0.7735
+loss: 0.5840, acc: 0.7736
+loss: 0.5898, acc: 0.7681
+loss: 0.5857, acc: 0.7701
+> val_acc: 0.7786, val_f1: 0.6363
+>> saved: state_dict/gcae_restaurant_val_acc0.7786
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 0.5579, acc: 0.7734
+loss: 0.5351, acc: 0.7812
+loss: 0.5156, acc: 0.7857
+loss: 0.5131, acc: 0.7911
+loss: 0.5168, acc: 0.7852
+loss: 0.5333, acc: 0.7748
+loss: 0.5285, acc: 0.7785

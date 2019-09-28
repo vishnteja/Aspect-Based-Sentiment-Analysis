@@ -1,0 +1,68 @@
+cuda memory allocated: 8544768
+n_trainable_params: 811603, n_nontrainable_params: 1323600
+> training arguments:
+>>> model_name: gcae
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adagrad.Adagrad'>
+>>> initializer: <function xavier_uniform_ at 0x00000158DDAD7620>
+>>> learning_rate: 0.01
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 30
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 300
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: None
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> glove_path: ./glove/glove.840B.300d.txt
+>>> model_class: <class 'models.gcae.GCAE'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 4.3462, acc: 0.3937
+loss: 2.7074, acc: 0.5000
+loss: 2.1320, acc: 0.5354
+loss: 1.8448, acc: 0.5328
+loss: 1.6539, acc: 0.5550
+loss: 1.5307, acc: 0.5740
+loss: 1.4194, acc: 0.5866
+loss: 1.3326, acc: 0.6047
+loss: 1.2688, acc: 0.6132
+loss: 1.2181, acc: 0.6225
+loss: 1.1692, acc: 0.6318
+loss: 1.1324, acc: 0.6385
+loss: 1.0980, acc: 0.6447
+loss: 1.0665, acc: 0.6487
+loss: 1.0421, acc: 0.6538
+loss: 1.0228, acc: 0.6551
+loss: 1.0013, acc: 0.6607
+loss: 0.9787, acc: 0.6649
+loss: 0.9598, acc: 0.6707
+loss: 0.9472, acc: 0.6744
+loss: 0.9319, acc: 0.6783
+loss: 0.9188, acc: 0.6807
+> val_acc: 0.7696, val_f1: 0.6255
+>> saved: state_dict/gcae_restaurant_val_acc0.7696
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.3970, acc: 0.8438
+loss: 0.4007, acc: 0.8661
+loss: 0.4425, acc: 0.8438
+loss: 0.4276, acc: 0.8419
+loss: 0.4493, acc: 0.8310
+loss: 0.4522, acc: 0.8241
+loss: 0.4508, acc: 0.8262
