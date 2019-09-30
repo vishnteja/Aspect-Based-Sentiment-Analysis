@@ -1,0 +1,241 @@
+cuda memory allocated: 18369536
+n_trainable_params: 3206003, n_nontrainable_params: 1384400
+> training arguments:
+>>> model_name: gc_ian
+>>> model_ver: 1
+>>> dataset: laptop
+>>> optimizer: <class 'torch.optim.adagrad.Adagrad'>
+>>> initializer: <function xavier_uniform_ at 0x0000024C21F876A8>
+>>> learning_rate: 0.01
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 30
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 400
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: gd
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 10
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/400_laptop_glove_domain_embedding_matrix.dat
+>>> model_class: <class 'models.gc_ian.GC_IAN1'>
+>>> dataset_file: {'train': './datasets/semeval14/Laptops_Train.xml.seg', 'test': './datasets/semeval14/Laptops_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.6763, acc: 0.4562
+loss: 1.4364, acc: 0.4875
+loss: 1.3087, acc: 0.5167
+loss: 1.2039, acc: 0.5359
+loss: 1.1699, acc: 0.5212
+loss: 1.1257, acc: 0.5344
+loss: 1.0882, acc: 0.5455
+loss: 1.0588, acc: 0.5539
+loss: 1.0564, acc: 0.5465
+loss: 1.0379, acc: 0.5525
+loss: 1.0219, acc: 0.5568
+loss: 1.0070, acc: 0.5656
+loss: 1.0032, acc: 0.5654
+loss: 0.9914, acc: 0.5723
+> val_acc: 0.6567, val_f1: 0.5741
+>> saved: state_dict/gc_ian_laptop_val_acc0.6567
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.5938, acc: 0.7344
+loss: 0.6044, acc: 0.7589
+loss: 0.6268, acc: 0.7422
+loss: 0.6235, acc: 0.7408
+loss: 0.6363, acc: 0.7287
+loss: 0.6299, acc: 0.7350
+loss: 0.6210, acc: 0.7334
+loss: 0.6294, acc: 0.7306
+loss: 0.6357, acc: 0.7329
+loss: 0.6371, acc: 0.7287
+loss: 0.6304, acc: 0.7314
+loss: 0.6365, acc: 0.7275
+loss: 0.6304, acc: 0.7344
+loss: 0.6215, acc: 0.7402
+loss: 0.6151, acc: 0.7426
+> val_acc: 0.6411, val_f1: 0.4953
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 0.4206, acc: 0.8516
+loss: 0.4464, acc: 0.8264
+loss: 0.4923, acc: 0.7924
+loss: 0.5100, acc: 0.7862
+loss: 0.4927, acc: 0.8034
+loss: 0.4929, acc: 0.8082
+loss: 0.4918, acc: 0.8079
+loss: 0.4958, acc: 0.8085
+loss: 0.4989, acc: 0.8054
+loss: 0.4917, acc: 0.8112
+loss: 0.4928, acc: 0.8102
+loss: 0.4860, acc: 0.8130
+loss: 0.4909, acc: 0.8120
+loss: 0.4907, acc: 0.8143
+> val_acc: 0.7053, val_f1: 0.6326
+>> saved: state_dict/gc_ian_laptop_val_acc0.7053
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+loss: 0.3541, acc: 0.8125
+loss: 0.3782, acc: 0.8854
+loss: 0.3726, acc: 0.8892
+loss: 0.3814, acc: 0.8828
+loss: 0.3855, acc: 0.8750
+loss: 0.3827, acc: 0.8774
+loss: 0.3789, acc: 0.8790
+loss: 0.3867, acc: 0.8750
+loss: 0.3915, acc: 0.8727
+loss: 0.3962, acc: 0.8682
+loss: 0.3969, acc: 0.8658
+loss: 0.3976, acc: 0.8672
+loss: 0.4054, acc: 0.8607
+loss: 0.4088, acc: 0.8580
+loss: 0.4065, acc: 0.8587
+> val_acc: 0.6897, val_f1: 0.5940
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+loss: 0.3181, acc: 0.8958
+loss: 0.3319, acc: 0.8789
+loss: 0.3422, acc: 0.8774
+loss: 0.3306, acc: 0.8924
+loss: 0.3264, acc: 0.8913
+loss: 0.3374, acc: 0.8895
+loss: 0.3412, acc: 0.8883
+loss: 0.3405, acc: 0.8865
+loss: 0.3406, acc: 0.8852
+loss: 0.3325, acc: 0.8906
+loss: 0.3350, acc: 0.8903
+loss: 0.3386, acc: 0.8895
+loss: 0.3391, acc: 0.8904
+loss: 0.3375, acc: 0.8902
+loss: 0.3423, acc: 0.8875
+> val_acc: 0.7022, val_f1: 0.6224
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+loss: 0.3354, acc: 0.8938
+loss: 0.2947, acc: 0.9156
+loss: 0.2893, acc: 0.9083
+loss: 0.2907, acc: 0.9125
+loss: 0.2926, acc: 0.9150
+loss: 0.2916, acc: 0.9135
+loss: 0.2912, acc: 0.9125
+loss: 0.2939, acc: 0.9086
+loss: 0.2881, acc: 0.9118
+loss: 0.2895, acc: 0.9113
+loss: 0.2906, acc: 0.9085
+loss: 0.2959, acc: 0.9068
+loss: 0.2971, acc: 0.9058
+loss: 0.2942, acc: 0.9071
+> val_acc: 0.6944, val_f1: 0.5965
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+loss: 0.1935, acc: 0.9531
+loss: 0.2468, acc: 0.9375
+loss: 0.2429, acc: 0.9375
+loss: 0.2402, acc: 0.9393
+loss: 0.2542, acc: 0.9290
+loss: 0.2633, acc: 0.9213
+loss: 0.2596, acc: 0.9248
+loss: 0.2713, acc: 0.9198
+loss: 0.2651, acc: 0.9249
+loss: 0.2680, acc: 0.9209
+loss: 0.2692, acc: 0.9201
+loss: 0.2679, acc: 0.9205
+loss: 0.2661, acc: 0.9234
+loss: 0.2652, acc: 0.9230
+loss: 0.2646, acc: 0.9232
+> val_acc: 0.7069, val_f1: 0.6348
+>> saved: state_dict/gc_ian_laptop_val_acc0.7069
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+loss: 0.1801, acc: 0.9609
+loss: 0.2090, acc: 0.9340
+loss: 0.2070, acc: 0.9353
+loss: 0.2116, acc: 0.9293
+loss: 0.2242, acc: 0.9271
+loss: 0.2288, acc: 0.9246
+loss: 0.2264, acc: 0.9283
+loss: 0.2207, acc: 0.9335
+loss: 0.2249, acc: 0.9297
+loss: 0.2332, acc: 0.9260
+loss: 0.2331, acc: 0.9259
+loss: 0.2346, acc: 0.9237
+loss: 0.2358, acc: 0.9243
+loss: 0.2317, acc: 0.9271
+> val_acc: 0.7132, val_f1: 0.6439
+>> saved: state_dict/gc_ian_laptop_val_acc0.7132
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+loss: 0.2536, acc: 0.9062
+loss: 0.2199, acc: 0.9271
+loss: 0.2186, acc: 0.9290
+loss: 0.2301, acc: 0.9316
+loss: 0.2249, acc: 0.9286
+loss: 0.2290, acc: 0.9279
+loss: 0.2187, acc: 0.9335
+loss: 0.2151, acc: 0.9375
+loss: 0.2134, acc: 0.9390
+loss: 0.2112, acc: 0.9395
+loss: 0.2134, acc: 0.9375
+loss: 0.2156, acc: 0.9347
+loss: 0.2106, acc: 0.9370
+loss: 0.2096, acc: 0.9375
+loss: 0.2103, acc: 0.9379
+> val_acc: 0.7163, val_f1: 0.6425
+>> saved: state_dict/gc_ian_laptop_val_acc0.7163
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+loss: 0.1588, acc: 0.9479
+loss: 0.1699, acc: 0.9531
+loss: 0.1638, acc: 0.9639
+loss: 0.1617, acc: 0.9635
+loss: 0.1699, acc: 0.9565
+loss: 0.1759, acc: 0.9509
+loss: 0.1783, acc: 0.9489
+loss: 0.1770, acc: 0.9498
+loss: 0.1816, acc: 0.9469
+loss: 0.1840, acc: 0.9466
+loss: 0.1796, acc: 0.9481
+loss: 0.1813, acc: 0.9472
+loss: 0.1807, acc: 0.9489
+loss: 0.1812, acc: 0.9485
+loss: 0.1808, acc: 0.9489
+> val_acc: 0.7006, val_f1: 0.6162
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 10
+loss: 0.1525, acc: 0.9625
+loss: 0.1559, acc: 0.9625
+loss: 0.1578, acc: 0.9625
+loss: 0.1667, acc: 0.9594
+loss: 0.1679, acc: 0.9575
+loss: 0.1691, acc: 0.9563
+loss: 0.1701, acc: 0.9580
+loss: 0.1759, acc: 0.9539
+loss: 0.1770, acc: 0.9535
+loss: 0.1770, acc: 0.9537
+loss: 0.1771, acc: 0.9528
+loss: 0.1768, acc: 0.9526
+loss: 0.1759, acc: 0.9529
+loss: 0.1761, acc: 0.9513
+> val_acc: 0.7038, val_f1: 0.6227
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 11
+loss: 0.1293, acc: 0.9688
+loss: 0.1554, acc: 0.9464
+loss: 0.1573, acc: 0.9453
+loss: 0.1575, acc: 0.9467
+loss: 0.1568, acc: 0.9531

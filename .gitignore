@@ -38,3 +38,5 @@ gen/
 state_dict/
 assets/
 .vscode/
+gen_data/
+embeddings/

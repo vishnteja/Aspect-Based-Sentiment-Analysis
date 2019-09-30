@@ -16,7 +16,8 @@ from torch.utils.data import DataLoader, random_split
 
 from data_utils import build_tokenizer, build_embedding_matrix, ABSADataset
 
-from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN, GCAE, GC_IAN
+from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN, GCAE
+from models import GC_IAN1, GC_IAN2, GC_IAN3
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -34,15 +35,14 @@ class Instructor:
       self.model = opt.model_class(bert, opt).to(opt.device)
     else:
       tokenizer = build_tokenizer(
-          fnames=[opt.dataset_file['train']],
+          fnames=[opt.dataset_file['train'], opt.dataset_file['test']],
           max_seq_len=opt.max_seq_len,
-          dat_fname='{0}_tokenizer.dat'.format(opt.dataset))
+          dat_fname='gen_data/tokenizer/{0}_tokenizer.dat'.format(opt.dataset))
       embedding_matrix = build_embedding_matrix(
           glove_path=opt.glove_path,
           word2idx=tokenizer.word2idx,
           embed_dim=opt.embed_dim,
-          dat_fname='{0}_{1}_embedding_matrix.dat'.format(
-              str(opt.embed_dim), opt.dataset))
+          dat_fname=opt.embedding_matrix_path)
       self.model = opt.model_class(embedding_matrix, opt).to(opt.device)
 
     self.trainset = ABSADataset(opt.dataset_file['train'], tokenizer)
@@ -196,6 +196,7 @@ def main():
   # Hyper Parameters
   parser = argparse.ArgumentParser()
   parser.add_argument('--model_name', default=config.MODEL_NAME, type=str)
+  parser.add_argument('--model_ver', default=config.MODEL_VER, type=str)
   parser.add_argument(
       '--dataset',
       default=config.DATASET,
@@ -221,12 +222,13 @@ def main():
       default=config.BATCH_SIZE,
       type=int,
       help='try 16, 32, 64 for BERT models')
-  parser.add_argument('--log_step', default=5, type=int)
-  parser.add_argument('--embed_dim', default=300, type=int)
-  parser.add_argument('--hidden_dim', default=300, type=int)
+  parser.add_argument('--log_step', default=config.LOG_STEP, type=int)
+  parser.add_argument('--embed_dim', default=config.EMBEDDING_DIM, type=int)
+  parser.add_argument('--hidden_dim', default=config.HIDDEN_DIM, type=int)
   parser.add_argument('--bert_dim', default=768, type=int)
   parser.add_argument(
       '--pretrained_bert_name', default='bert-base-uncased', type=str)
+  parser.add_argument('--embeddings', default=config.EMBEDDINGS, type=str)
   parser.add_argument('--max_seq_len', default=config.MAX_SEQ_LEN, type=int)
   parser.add_argument('--polarities_dim', default=config.POLARITY_DIM, type=int)
   parser.add_argument('--hops', default=3, type=int)
@@ -248,7 +250,7 @@ def main():
   parser.add_argument('--kernel_size', default=config.KERNEL_SIZE, type=int)
   opt = parser.parse_args()
 
-  if opt.seed is not None:
+  if opt.seed is not None or opt.seed != 0:
     random.seed(opt.seed)
     numpy.random.seed(opt.seed)
     torch.manual_seed(opt.seed)
@@ -256,6 +258,17 @@ def main():
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
+  emebeddings = {
+      'g':
+          'gen_data/embeddings/{0}_{1}_embedding_matrix.dat'.format(
+              str(opt.embed_dim), opt.dataset),
+      'd':
+          'gen_data/embeddings/{0}_{1}_domain_embedding_matrix.dat'.format(
+              str(opt.embed_dim), opt.dataset),
+      'gd':
+          'gen_data/embeddings/{0}_{1}_glove_domain_embedding_matrix.dat'
+          .format(str(opt.embed_dim), opt.dataset)
+  }
   model_classes = {
       'lstm': LSTM,
       'td_lstm': TD_LSTM,
@@ -266,7 +279,11 @@ def main():
       'aoa': AOA,
       'gcnn': Gated_CNN,
       'gcae': GCAE,
-      'gc_ian': GC_IAN
+      'gc_ian': {
+          '1': GC_IAN1,
+          '2': GC_IAN2,
+          '3': GC_IAN3
+      }
   }
   dataset_files = {
       'twitter': {
@@ -315,8 +332,11 @@ def main():
       'sgd': torch.optim.SGD,
   }
 
-  opt.glove_path = './glove/glove.840B.300d.txt'
+  opt.glove_path = './embeddings/glove.840B.300d.txt'
+  opt.embedding_matrix_path = emebeddings[opt.embeddings]
   opt.model_class = model_classes[opt.model_name]
+  if type(opt.model_class) == dict:
+    opt.model_class = opt.model_class[opt.model_ver]
   opt.dataset_file = dataset_files[opt.dataset]
   opt.inputs_cols = input_colses[opt.model_name]
   opt.initializer = initializers[opt.initializer]

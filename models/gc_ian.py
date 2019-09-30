@@ -9,7 +9,7 @@ from layers.attention import Attention
 class GC_IAN1(nn.Module):
 
   def __init__(self, embedding_matrix, opt):
-    super(GC_IAN, self).__init__()
+    super(GC_IAN1, self).__init__()
     self.opt = opt
     kernel_sizes = [1, 3, 5, 7]
     self.embed = nn.Embedding.from_pretrained(
@@ -103,7 +103,7 @@ class GC_IAN1(nn.Module):
 class GC_IAN2(nn.Module):
 
   def __init__(self, embedding_matrix, opt):
-    super(GC_IAN, self).__init__()
+    super(GC_IAN2, self).__init__()
     self.opt = opt
     kernel_sizes = [1, 3, 5, 7]
     self.embed = nn.Embedding.from_pretrained(
@@ -197,7 +197,7 @@ class GC_IAN2(nn.Module):
 class GC_IAN3(nn.Module):
 
   def __init__(self, embedding_matrix, opt):
-    super(GC_IAN, self).__init__()
+    super(GC_IAN3, self).__init__()
     self.opt = opt
     kernel_sizes = [1, 3, 5, 7]
     self.embed = nn.Embedding.from_pretrained(
