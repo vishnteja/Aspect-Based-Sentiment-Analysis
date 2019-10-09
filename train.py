@@ -8,13 +8,13 @@ import random
 import numpy
 import config
 
-from pytorch_transformers import BertModel
+# from pytorch_transformers import BertModel
 from sklearn import metrics
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, random_split
 
-from data_utils import build_tokenizer, build_embedding_matrix, ABSADataset
+from data_utils import build_tokenizer, build_embedding_matrix, build_pos_tagger, ABSADataset
 
 from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN, GCAE
 from models import GC_IAN1, GC_IAN2, GC_IAN3
@@ -30,23 +30,28 @@ class Instructor:
     self.opt = opt
 
     if 'bert' in opt.model_name:
-      tokenizer = Tokenizer4Bert(opt.max_seq_len, opt.pretrained_bert_name)
-      bert = BertModel.from_pretrained(opt.pretrained_bert_name)
-      self.model = opt.model_class(bert, opt).to(opt.device)
+      # tokenizer = Tokenizer4Bert(opt.max_seq_len, opt.pretrained_bert_name)
+      # bert = BertModel.from_pretrained(opt.pretrained_bert_name)
+      # self.model = opt.model_class(bert, opt).to(opt.device)
+      x = 1
     else:
       tokenizer = build_tokenizer(
           fnames=[opt.dataset_file['train'], opt.dataset_file['test']],
           max_seq_len=opt.max_seq_len,
           dat_fname='gen_data/tokenizer/{0}_tokenizer.dat'.format(opt.dataset))
+      pos_tagger = build_pos_tagger(modelfile=opt.stanford_pos_model, jarfile=opt.stanford_pos_jar)
       embedding_matrix = build_embedding_matrix(
           glove_path=opt.glove_path,
           word2idx=tokenizer.word2idx,
           embed_dim=opt.embed_dim,
           dat_fname=opt.embedding_matrix_path)
-      self.model = opt.model_class(embedding_matrix, opt).to(opt.device)
+          if "extra" in opt.model_name:
+            self.model = opt.model_class(embedding_matrix, pos_tagger.index2vec, opt).to(opt.device)
+          else:
+            self.model = opt.model_class(embedding_matrix, opt).to(opt.device)
 
-    self.trainset = ABSADataset(opt.dataset_file['train'], tokenizer)
-    self.testset = ABSADataset(opt.dataset_file['test'], tokenizer)
+    self.trainset = ABSADataset(opt.dataset_file['train'], tokenizer, pos_tagger)
+    self.testset = ABSADataset(opt.dataset_file['test'], tokenizer, pos_tagger)
     assert 0 <= opt.valset_ratio < 1
     if opt.valset_ratio > 0:
       valset_len = int(len(self.trainset) * opt.valset_ratio)
@@ -76,14 +81,14 @@ class Instructor:
 
   def _reset_params(self):
     for child in self.model.children():
-      if type(child) != BertModel:  # skip bert params
-        for p in child.parameters():
-          if p.requires_grad:
-            if len(p.shape) > 1:
-              self.opt.initializer(p)
-            else:
-              stdv = 1. / math.sqrt(p.shape[0])
-              torch.nn.init.uniform_(p, a=-stdv, b=stdv)
+      # if type(child) != BertModel:  # skip bert params
+      for p in child.parameters():
+        if p.requires_grad:
+          if len(p.shape) > 1:
+            self.opt.initializer(p)
+          else:
+            stdv = 1. / math.sqrt(p.shape[0])
+            torch.nn.init.uniform_(p, a=-stdv, b=stdv)
 
   def _train(self, criterion, optimizer, train_data_loader, val_data_loader):
     max_val_acc = 0
@@ -248,6 +253,7 @@ def main():
   parser.add_argument('--out_channels', default=config.OUT_CHANNELS, type=int)
   parser.add_argument('--downbot', default=config.DOWNBOT, type=int)
   parser.add_argument('--kernel_size', default=config.KERNEL_SIZE, type=int)
+  parser.add_argument('--position_dim', default=config.POSITION_DIM, type=int)
   opt = parser.parse_args()
 
   if opt.seed is not None or opt.seed != 0:

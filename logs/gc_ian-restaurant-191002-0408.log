@@ -1,0 +1,123 @@
+cuda memory allocated: 4474880
+n_trainable_params: 231303, n_nontrainable_params: 882400
+> training arguments:
+>>> model_name: gc_ian
+>>> model_ver: 3
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adamax.Adamax'>
+>>> initializer: <function xavier_uniform_ at 0x000001F4649E0C80>
+>>> learning_rate: 0.0003
+>>> momentum: 0.95
+>>> dropout: 0.6
+>>> l2reg: 5e-05
+>>> num_epoch: 200
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 200
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: gd
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 25
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/200_restaurant_glove_domain_embedding_matrix.dat
+>>> model_class: <class 'models.gc_ian.GC_IAN3'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 0.9722, acc: 0.5500
+loss: 0.9888, acc: 0.5250
+loss: 1.0197, acc: 0.5104
+loss: 1.0149, acc: 0.5250
+loss: 1.0003, acc: 0.5363
+loss: 0.9978, acc: 0.5406
+loss: 0.9871, acc: 0.5536
+loss: 0.9770, acc: 0.5594
+loss: 0.9795, acc: 0.5590
+loss: 0.9797, acc: 0.5613
+loss: 0.9757, acc: 0.5659
+loss: 0.9859, acc: 0.5609
+loss: 0.9878, acc: 0.5620
+loss: 0.9795, acc: 0.5665
+loss: 0.9758, acc: 0.5721
+loss: 0.9766, acc: 0.5715
+loss: 0.9772, acc: 0.5710
+loss: 0.9753, acc: 0.5740
+loss: 0.9785, acc: 0.5717
+loss: 0.9740, acc: 0.5763
+loss: 0.9741, acc: 0.5765
+loss: 0.9706, acc: 0.5778
+> val_acc: 0.6500, val_f1: 0.2626
+>> saved: state_dict/gc_ian_restaurant_val_acc0.65
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.9238, acc: 0.5625
+loss: 0.9441, acc: 0.5848
+loss: 0.9748, acc: 0.5729
+loss: 0.9810, acc: 0.5699
+loss: 0.9681, acc: 0.5781
+loss: 0.9568, acc: 0.5880
+loss: 0.9486, acc: 0.5879
+loss: 0.9546, acc: 0.5870
+loss: 0.9499, acc: 0.5885
+loss: 0.9409, acc: 0.5957
+loss: 0.9450, acc: 0.5938
+loss: 0.9502, acc: 0.5910
+loss: 0.9541, acc: 0.5897
+loss: 0.9521, acc: 0.5905
+loss: 0.9430, acc: 0.5959
+loss: 0.9439, acc: 0.5938
+loss: 0.9421, acc: 0.5968
+loss: 0.9387, acc: 0.5963
+loss: 0.9422, acc: 0.5951
+loss: 0.9387, acc: 0.5979
+loss: 0.9366, acc: 0.5977
+loss: 0.9361, acc: 0.5978
+loss: 0.9363, acc: 0.5971
+> val_acc: 0.6500, val_f1: 0.2626
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 0.9865, acc: 0.4922
+loss: 0.9835, acc: 0.5208
+loss: 0.9474, acc: 0.5536
+loss: 0.9412, acc: 0.5641
+loss: 0.9251, acc: 0.5729
+loss: 0.9079, acc: 0.5873
+loss: 0.9030, acc: 0.5919
+loss: 0.8994, acc: 0.5962
+loss: 0.9132, acc: 0.5874
+loss: 0.9100, acc: 0.5893
+loss: 0.9031, acc: 0.5961
+loss: 0.9041, acc: 0.5990
+loss: 0.9023, acc: 0.6001
+loss: 0.8997, acc: 0.6046
+loss: 0.9042, acc: 0.6009
+loss: 0.9060, acc: 0.6009
+loss: 0.9051, acc: 0.6019
+loss: 0.9048, acc: 0.6015
+loss: 0.9023, acc: 0.6014
+loss: 0.9024, acc: 0.6032
+loss: 0.9007, acc: 0.6037
+loss: 0.9015, acc: 0.6032
+> val_acc: 0.6509, val_f1: 0.2663
+>> saved: state_dict/gc_ian_restaurant_val_acc0.6509
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+loss: 1.0353, acc: 0.5312
+loss: 0.9838, acc: 0.5781
+loss: 0.9369, acc: 0.5966
+loss: 0.9226, acc: 0.6035
+loss: 0.9277, acc: 0.6012
+loss: 0.9164, acc: 0.5986
+loss: 0.8957, acc: 0.6169

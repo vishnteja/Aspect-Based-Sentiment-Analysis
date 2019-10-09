@@ -3,8 +3,54 @@ import pickle
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-from pytorch_transformers import BertTokenizer
+from nltk.tag import StanfordPOSTagger
 
+java_path = "C:/Program Files/Java/jdk1.8.0_181/bin/java.exe"
+os.environ["JAVAHOME"] = java_path
+stanford_dir = "C:/NLP_Programs/stanford-postagger-2018-10-16"
+modelfile = stanford_dir + "/models/english-bidirectional-distsim.tagger"
+jarfile = stanford_dir + "/stanford-postagger.jar"
+
+tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile)
+
+pos2index = {
+        "CC": 1,
+        "CD": 2,
+        "DT": 3,
+        "EX": 4,
+        "FW": 5,
+        "IN": 6,
+        "JJ": 7,
+        "JJR": 8,
+        "JJS": 9,
+        "LS": 10,
+        "MD": 11,
+        "NN": 12,
+        "NNS": 13,
+        "NP": 14,
+        "NNPS": 15,
+        "PDT": 16,
+        "POS": 17,
+        "PRP": 18,
+        "PRP$": 19,
+        "RB": 20,
+        "RBR": 21,
+        "RBS": 22,
+        "RP": 23,
+        "SYM": 24,
+        "TO": 25,
+        "UH": 26,
+        "VB": 27,
+        "VBG": 29,
+        "VBD": 28,
+        "VBN": 30,
+        "VBP": 31,
+        "VBZ": 32,
+        "WDT": 33,
+        "WP": 34,
+        "WP$": 35,
+        "WRB": 36
+}
 
 def word_tokenize_text(text):
   for ch in [
@@ -14,6 +60,8 @@ def word_tokenize_text(text):
     text = text.replace(ch, " " + ch + " ")
   return text
 
+def build_pos_tagger(modelfile, jarfile):
+  return POSTagger(modelfile, jarfile)
 
 def build_tokenizer(fnames, max_seq_len, dat_fname):
   if os.path.exists(dat_fname):
@@ -129,10 +177,44 @@ class Tokenizer(object):
     return pad_and_truncate(
         sequence, self.max_seq_len, padding=padding, truncating=truncating)
 
+  def position_to_sequence(self, text_left, aspect, text_right):
+    tag_left = [len(text_left)-i for i in range(len(text_left))]
+    tag_aspect = [0 for i in range(len(text_aspect))]
+    tag_right = [i+1 for i in range(len(text_right))]
+    position_tag = tag_left + tag_aspect + tag_right
+    if len(position_tag) == 0:
+      position_tag = [0]
+
+    return pad_and_truncate(
+      sequence, self.max_seq_len, padding=padding, truncating=truncating)
+
+class POSTagger():
+
+  def __init__(self, modelfile, jarfile):
+    self.tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile)
+    self.pos2index = pos2index
+    self.num_tags = len(self.pos2index)
+    self.index2vec = np.zeros((self.num_tags+2, self.num_tags)
+
+    for i in range(0, self.num_tags):
+      self.index2vec[i+1] = np.zeros(self.num_tags)
+      self.index2vec[i+1, i] = 1
+
+  def get_pos_tags(text):
+    tagged_text = self.tagger.tag(text)
+    tags = []
+    for i in tagged_text:
+      _, tag = zip(*i)
+      if tag in self.pos2index:
+        tags.append(self.pos2index[tag])
+      else:
+        tags.append(self.pos2index["NOT$"])
+    return tags
+
 
 class ABSADataset(Dataset):
 
-  def __init__(self, fname, tokenizer):
+  def __init__(self, fname, tokenizer, pos_tagger):
     fin = open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
     lines = fin.readlines()
     fin.close()
@@ -180,6 +262,11 @@ class ABSADataset(Dataset):
       aspect_bert_indices = tokenizer.text_to_sequence("[CLS] " + aspect +
                                                        " [SEP]")
 
+      pos_indices = pos_tagger.get_pos_tags(text_left + " " + aspect +
+                                                    " " + text_right)
+
+      position_indices = tokenizer.position_to_sequence(text_left, aspect, text_right)
+
       data = {
           'text_bert_indices': text_bert_indices,
           'bert_segments_ids': bert_segments_ids,
@@ -194,6 +281,7 @@ class ABSADataset(Dataset):
           'aspect_indices': aspect_indices,
           'aspect_in_text': aspect_in_text,
           'polarity': polarity,
+          'pos_indices': pos_indices
       }
 
       all_data.append(data)
