@@ -7,3 +7,7 @@ ABSA
 
 1. Make folder gen_data/dataset/
 2. And put laptop_test_dataset.dat files and all other .dat files in the above folder.
+
+#### Run train.py
+- python train.py (Edit config details in config.py)
+- for more info on how config afftects options look at main function in train.py
