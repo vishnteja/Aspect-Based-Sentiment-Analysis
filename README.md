@@ -1,6 +1,9 @@
 ABSA
 
 ## Instructions to run 
+
+Gdrive - https://drive.google.com/drive/folders/16yVtd_tw5UIsx3GhWq3FCsjviO66mAbc?usp=sharing
+
 #### Make folders for running code 
 1. Make folder embeddings/domain_embedding
 2. And put laptop_emb.vec and restaurant_emb.vec files in the above folders.
