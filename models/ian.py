@@ -43,7 +43,7 @@ class IAN(nn.Module):
     context_pool = torch.div(context_pool,
                              text_raw_len.view(text_raw_len.size(0), 1))
 
-    print(aspect_pool.shape)
+    print(aspect.shape)
     print(context_pool.shape)
     input()
     aspect_final, _ = self.attention_aspect(aspect, context_pool)

@@ -1,0 +1,70 @@
+cuda memory allocated: 6640128
+n_trainable_params: 1213603, n_nontrainable_params: 442532
+> training arguments:
+>>> model_name: gc_embed
+>>> model_ver: 2
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x0000025D95722E18>
+>>> learning_rate: 0.0003
+>>> momentum: 0.95
+>>> dropout: 0.6
+>>> l2reg: 5e-05
+>>> num_epoch: 50
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 100
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: d
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> position_dim: 100
+>>> stanford_pos_model: C:/NLP_Programs/stanford-postagger-2018-10-16/models/english-bidirectional-distsim.tagger
+>>> stanford_pos_jar: C:/NLP_Programs/stanford-postagger-2018-10-16/stanford-postagger.jar
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/100_restaurant_domain_embedding_matrix.dat
+>>> model_class: <class 'models.gc_embed.GC_EMBED2'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices', 'pos_indices', 'aspect_pos_indices', 'position_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.1584, acc: 0.3375
+loss: 1.0578, acc: 0.4656
+loss: 1.0315, acc: 0.5125
+loss: 1.0274, acc: 0.5203
+loss: 1.0149, acc: 0.5387
+loss: 1.0211, acc: 0.5385
+loss: 1.0161, acc: 0.5446
+loss: 1.0051, acc: 0.5516
+loss: 0.9947, acc: 0.5618
+loss: 0.9822, acc: 0.5681
+loss: 0.9834, acc: 0.5670
+loss: 0.9787, acc: 0.5698
+loss: 0.9726, acc: 0.5745
+loss: 0.9684, acc: 0.5777
+loss: 0.9579, acc: 0.5846
+loss: 0.9534, acc: 0.5867
+loss: 0.9506, acc: 0.5886
+loss: 0.9519, acc: 0.5868
+loss: 0.9497, acc: 0.5868
+loss: 0.9465, acc: 0.5875
+loss: 0.9462, acc: 0.5869
+loss: 0.9447, acc: 0.5875
+> val_acc: 0.6795, val_f1: 0.3648
+>> saved: state_dict/gc_embed_restaurant_val_acc0.6795
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.9740, acc: 0.5000
+loss: 0.9213, acc: 0.5625
+loss: 0.8957, acc: 0.5911

@@ -8,3 +8,5 @@ from models.aoa import AOA
 from models.gated_cnn import Gated_CNN
 from models.gcae import GCAE
 from models.gc_ian import GC_IAN1, GC_IAN2, GC_IAN3
+from models.gc_embed import GC_EMBED1, GC_EMBED2, GC_EMBED3
+from models.igcn import IGCN, IGCN_2, IGCN_3, IGCN_4

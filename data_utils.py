@@ -7,50 +7,46 @@ from nltk.tag import StanfordPOSTagger
 
 java_path = "C:/Program Files/Java/jdk1.8.0_181/bin/java.exe"
 os.environ["JAVAHOME"] = java_path
-stanford_dir = "C:/NLP_Programs/stanford-postagger-2018-10-16"
-modelfile = stanford_dir + "/models/english-bidirectional-distsim.tagger"
-jarfile = stanford_dir + "/stanford-postagger.jar"
-
-tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile)
 
 pos2index = {
-        "CC": 1,
-        "CD": 2,
-        "DT": 3,
-        "EX": 4,
-        "FW": 5,
-        "IN": 6,
-        "JJ": 7,
-        "JJR": 8,
-        "JJS": 9,
-        "LS": 10,
-        "MD": 11,
-        "NN": 12,
-        "NNS": 13,
-        "NP": 14,
-        "NNPS": 15,
-        "PDT": 16,
-        "POS": 17,
-        "PRP": 18,
-        "PRP$": 19,
-        "RB": 20,
-        "RBR": 21,
-        "RBS": 22,
-        "RP": 23,
-        "SYM": 24,
-        "TO": 25,
-        "UH": 26,
-        "VB": 27,
-        "VBG": 29,
-        "VBD": 28,
-        "VBN": 30,
-        "VBP": 31,
-        "VBZ": 32,
-        "WDT": 33,
-        "WP": 34,
-        "WP$": 35,
-        "WRB": 36
+    "CC": 1,
+    "CD": 2,
+    "DT": 3,
+    "EX": 4,
+    "FW": 5,
+    "IN": 6,
+    "JJ": 7,
+    "JJR": 8,
+    "JJS": 9,
+    "LS": 10,
+    "MD": 11,
+    "NN": 12,
+    "NNS": 13,
+    "NP": 14,
+    "NNPS": 15,
+    "PDT": 16,
+    "POS": 17,
+    "PRP": 18,
+    "PRP$": 19,
+    "RB": 20,
+    "RBR": 21,
+    "RBS": 22,
+    "RP": 23,
+    "SYM": 24,
+    "TO": 25,
+    "UH": 26,
+    "VB": 27,
+    "VBG": 29,
+    "VBD": 28,
+    "VBN": 30,
+    "VBP": 31,
+    "VBZ": 32,
+    "WDT": 33,
+    "WP": 34,
+    "WP$": 35,
+    "WRB": 36
 }
+
 
 def word_tokenize_text(text):
   for ch in [
@@ -60,8 +56,34 @@ def word_tokenize_text(text):
     text = text.replace(ch, " " + ch + " ")
   return text
 
-def build_pos_tagger(modelfile, jarfile):
-  return POSTagger(modelfile, jarfile)
+
+def build_pos_tagger(fname, dat_fname, modelfile, jarfile, tokenizer):
+  if os.path.exists(dat_fname):
+    print('loading pos_tagger:', dat_fname)
+    pos_tagger = pickle.load(open(dat_fname, 'rb'))
+  else:
+    fin = open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
+    lines = fin.readlines()
+    fin.close()
+    text_list = []
+    aspect_list = []
+    for i in range(0, len(lines), 3):
+      text_left, _, text_right = [
+          s.lower().strip() for s in lines[i].partition("$T$")
+      ]
+      aspect = lines[i + 1].lower().strip()
+      text_raw = text_left + " " + aspect + " " + text_right
+      text_list.append(text_raw)
+      aspect_list.append(aspect)
+
+    pos_tagger = POSTagger(modelfile, jarfile, tokenizer.max_seq_len)
+    pos_tagger.get_pos_tags_list(text_list, flag='text')
+    pos_tagger.get_pos_tags_list(aspect_list, flag='aspect')
+    pickle.dump(pos_tagger, open(dat_fname, 'wb'))
+    print('Finished processing for POS tags')
+
+  return pos_tagger
+
 
 def build_tokenizer(fnames, max_seq_len, dat_fname):
   if os.path.exists(dat_fname):
@@ -177,115 +199,158 @@ class Tokenizer(object):
     return pad_and_truncate(
         sequence, self.max_seq_len, padding=padding, truncating=truncating)
 
-  def position_to_sequence(self, text_left, aspect, text_right):
-    tag_left = [len(text_left)-i for i in range(len(text_left))]
-    tag_aspect = [0 for i in range(len(text_aspect))]
-    tag_right = [i+1 for i in range(len(text_right))]
+  def position_to_sequence(self,
+                           text_left,
+                           aspect,
+                           text_right,
+                           reverse='False',
+                           padding='post',
+                           truncating='post'):
+    tag_left = [len(text_left) - i for i in range(len(text_left))]
+    tag_aspect = [0 for i in range(len(aspect))]
+    tag_right = [i + 1 for i in range(len(text_right))]
     position_tag = tag_left + tag_aspect + tag_right
     if len(position_tag) == 0:
       position_tag = [0]
 
     return pad_and_truncate(
-      sequence, self.max_seq_len, padding=padding, truncating=truncating)
+        position_tag, self.max_seq_len, padding=padding, truncating=truncating)
+
 
 class POSTagger():
 
-  def __init__(self, modelfile, jarfile):
-    self.tagger = StanfordPOSTagger(model_filename=modelfile, path_to_jar=jarfile)
+  def __init__(self, modelfile, jarfile, max_seq_len):
+    self.tagger = StanfordPOSTagger(
+        model_filename=modelfile, path_to_jar=jarfile)
     self.pos2index = pos2index
     self.num_tags = len(self.pos2index)
-    self.index2vec = np.zeros((self.num_tags+2, self.num_tags)
+    self.index2vec = np.zeros((self.num_tags + 1, self.num_tags))
+    self.max_seq_len = max_seq_len
+    self.text_pos_seq = None
+    self.aspect_pos_seq = None
 
-    for i in range(0, self.num_tags):
-      self.index2vec[i+1] = np.zeros(self.num_tags)
-      self.index2vec[i+1, i] = 1
+    for i in range(self.num_tags):
+      self.index2vec[i + 1] = np.zeros(self.num_tags)
+      self.index2vec[i + 1, i] = 1
 
-  def get_pos_tags(text):
-    tagged_text = self.tagger.tag(text)
-    tags = []
-    for i in tagged_text:
-      _, tag = zip(*i)
-      if tag in self.pos2index:
-        tags.append(self.pos2index[tag])
-      else:
-        tags.append(self.pos2index["NOT$"])
-    return tags
+  def get_pos_tags(self, ind, flag='text'):
+    if flag == 'text':
+      return self.text_pos_seq[ind]
+    else:
+      return self.aspect_pos_seq[ind]
+
+  def get_pos_tags_list(self,
+                        text_list,
+                        padding='post',
+                        truncating='post',
+                        flag='text'):
+    tagged_text_list = self.tagger.tag_sents(
+        word_tokenize_text(sent).strip().split() for sent in text_list)
+    res = []
+    for text in tagged_text_list:
+      ans = [
+          self.pos2index[i[1]] if i[1] in self.pos2index else 0 for i in text
+      ]
+      ans = pad_and_truncate(
+          ans, self.max_seq_len, padding=padding, truncating=truncating)
+      res.append(ans)
+    if flag == 'text':
+      self.text_pos_seq = res
+    else:
+      self.aspect_pos_seq = res
+    return res
 
 
 class ABSADataset(Dataset):
 
-  def __init__(self, fname, tokenizer, pos_tagger):
-    fin = open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
-    lines = fin.readlines()
-    fin.close()
-
+  def __init__(self, fname, dat_fname, tokenizer, pos_tagger):
     all_data = []
-    for i in range(0, len(lines), 3):
-      text_left, _, text_right = [
-          s.lower().strip() for s in lines[i].partition("$T$")
-      ]
-      text_left = word_tokenize_text(text_left)
-      text_right = word_tokenize_text(text_right)
-      aspect = word_tokenize_text(lines[i + 1].lower().strip())
-      polarity = lines[i + 2].strip()
+    prog = 0
+    if os.path.exists(dat_fname):
+      print('loading Dataset:', dat_fname)
+      self.data = pickle.load(open(dat_fname, 'rb'))
+    else:
+      fin = open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore')
+      lines = fin.readlines()
+      fin.close()
+      for i in range(0, len(lines), 3):
+        text_left, _, text_right = [
+            s.lower().strip() for s in lines[i].partition("$T$")
+        ]
+        text_left = word_tokenize_text(text_left)
+        text_right = word_tokenize_text(text_right)
+        aspect = word_tokenize_text(lines[i + 1].lower().strip())
+        polarity = lines[i + 2].strip()
 
-      text_raw_indices = tokenizer.text_to_sequence(text_left + " " + aspect +
-                                                    " " + text_right)
-      text_raw_without_aspect_indices = tokenizer.text_to_sequence(text_left +
-                                                                   " " +
-                                                                   text_right)
-      text_left_indices = tokenizer.text_to_sequence(text_left)
-      text_left_with_aspect_indices = tokenizer.text_to_sequence(text_left +
-                                                                 " " + aspect)
-      text_right_indices = tokenizer.text_to_sequence(text_right, reverse=True)
-      text_right_with_aspect_indices = tokenizer.text_to_sequence(
-          " " + aspect + " " + text_right, reverse=True)
-      aspect_indices = tokenizer.text_to_sequence(aspect)
-      left_context_len = np.sum(text_left_indices != 0)
-      aspect_len = np.sum(aspect_indices != 0)
-      aspect_in_text = torch.tensor(
-          [left_context_len.item(), (left_context_len + aspect_len - 1).item()])
-      polarity = int(polarity) + 1
+        text_raw_indices = tokenizer.text_to_sequence(text_left + " " + aspect +
+                                                      " " + text_right)
+        text_raw_without_aspect_indices = tokenizer.text_to_sequence(text_left +
+                                                                     " " +
+                                                                     text_right)
+        text_left_indices = tokenizer.text_to_sequence(text_left)
+        text_left_with_aspect_indices = tokenizer.text_to_sequence(text_left +
+                                                                   " " + aspect)
+        text_right_indices = tokenizer.text_to_sequence(
+            text_right, reverse=True)
+        text_right_with_aspect_indices = tokenizer.text_to_sequence(
+            " " + aspect + " " + text_right, reverse=True)
+        aspect_indices = tokenizer.text_to_sequence(aspect)
+        left_context_len = np.sum(text_left_indices != 0)
+        aspect_len = np.sum(aspect_indices != 0)
+        aspect_in_text = torch.tensor([
+            left_context_len.item(), (left_context_len + aspect_len - 1).item()
+        ])
+        polarity = int(polarity) + 1
 
-      text_bert_indices = tokenizer.text_to_sequence('[CLS] ' + text_left +
-                                                     " " + aspect + " " +
-                                                     text_right + ' [SEP] ' +
-                                                     aspect + " [SEP]")
-      bert_segments_ids = np.asarray([0] * (np.sum(text_raw_indices != 0) + 2) +
-                                     [1] * (aspect_len + 1))
-      bert_segments_ids = pad_and_truncate(bert_segments_ids,
-                                           tokenizer.max_seq_len)
+        text_bert_indices = tokenizer.text_to_sequence('[CLS] ' + text_left +
+                                                       " " + aspect + " " +
+                                                       text_right + ' [SEP] ' +
+                                                       aspect + " [SEP]")
+        bert_segments_ids = np.asarray([0] *
+                                       (np.sum(text_raw_indices != 0) + 2) +
+                                       [1] * (aspect_len + 1))
+        bert_segments_ids = pad_and_truncate(bert_segments_ids,
+                                             tokenizer.max_seq_len)
 
-      text_raw_bert_indices = tokenizer.text_to_sequence("[CLS] " + text_left +
-                                                         " " + aspect + " " +
-                                                         text_right + " [SEP]")
-      aspect_bert_indices = tokenizer.text_to_sequence("[CLS] " + aspect +
-                                                       " [SEP]")
+        text_raw_bert_indices = tokenizer.text_to_sequence("[CLS] " +
+                                                           text_left + " " +
+                                                           aspect + " " +
+                                                           text_right +
+                                                           " [SEP]")
+        aspect_bert_indices = tokenizer.text_to_sequence("[CLS] " + aspect +
+                                                         " [SEP]")
 
-      pos_indices = pos_tagger.get_pos_tags(text_left + " " + aspect +
-                                                    " " + text_right)
+        pos_indices = pos_tagger.get_pos_tags(prog, flag='text')
+        aspect_pos_indices = pos_tagger.get_pos_tags(prog, flag='aspect')
 
-      position_indices = tokenizer.position_to_sequence(text_left, aspect, text_right)
+        position_indices = tokenizer.position_to_sequence(
+            text_left.strip().split(),
+            aspect.strip().split(),
+            text_right.strip().split())
 
-      data = {
-          'text_bert_indices': text_bert_indices,
-          'bert_segments_ids': bert_segments_ids,
-          'text_raw_bert_indices': text_raw_bert_indices,
-          'aspect_bert_indices': aspect_bert_indices,
-          'text_raw_indices': text_raw_indices,
-          'text_raw_without_aspect_indices': text_raw_without_aspect_indices,
-          'text_left_indices': text_left_indices,
-          'text_left_with_aspect_indices': text_left_with_aspect_indices,
-          'text_right_indices': text_right_indices,
-          'text_right_with_aspect_indices': text_right_with_aspect_indices,
-          'aspect_indices': aspect_indices,
-          'aspect_in_text': aspect_in_text,
-          'polarity': polarity,
-          'pos_indices': pos_indices
-      }
-
-      all_data.append(data)
-    self.data = all_data
+        data = {
+            'text_bert_indices': text_bert_indices,
+            'bert_segments_ids': bert_segments_ids,
+            'text_raw_bert_indices': text_raw_bert_indices,
+            'aspect_bert_indices': aspect_bert_indices,
+            'text_raw_indices': text_raw_indices,
+            'text_raw_without_aspect_indices': text_raw_without_aspect_indices,
+            'text_left_indices': text_left_indices,
+            'text_left_with_aspect_indices': text_left_with_aspect_indices,
+            'text_right_indices': text_right_indices,
+            'text_right_with_aspect_indices': text_right_with_aspect_indices,
+            'aspect_indices': aspect_indices,
+            'aspect_in_text': aspect_in_text,
+            'polarity': polarity,
+            'pos_indices': pos_indices,
+            'aspect_pos_indices': aspect_pos_indices,
+            'position_indices': position_indices
+        }
+        print(prog)
+        prog += 1
+        all_data.append(data)
+      self.data = all_data
+      pickle.dump(self.data, open(dat_fname, 'wb'))
 
   def __getitem__(self, index):
     return self.data[index]

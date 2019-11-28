@@ -1,0 +1,94 @@
+cuda memory allocated: 4706816
+n_trainable_params: 825503, n_nontrainable_params: 347432
+> training arguments:
+>>> model_name: igcn_embed
+>>> model_ver: 3
+>>> dataset: laptop
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x0000025D7B582D90>
+>>> learning_rate: 0.0003
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 50
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 136
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: d
+>>> max_seq_len: 180
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> position_dim: 100
+>>> gating: GTU
+>>> stanford_pos_model: C:/NLP_Programs/stanford-postagger-2018-10-16/models/english-bidirectional-distsim.tagger
+>>> stanford_pos_jar: C:/NLP_Programs/stanford-postagger-2018-10-16/stanford-postagger.jar
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/100_laptop_domain_embedding_matrix.dat
+>>> model_class: <class 'models.igcn.IGCN_3'>
+>>> dataset_file: {'train': './datasets/semeval14/Laptops_Train.xml.seg', 'test': './datasets/semeval14/Laptops_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices', 'pos_indices', 'aspect_pos_indices', 'position_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.0742, acc: 0.4313
+loss: 1.0855, acc: 0.3969
+loss: 1.0803, acc: 0.4021
+loss: 1.0886, acc: 0.3969
+loss: 1.0835, acc: 0.4012
+loss: 1.0780, acc: 0.4104
+loss: 1.0764, acc: 0.4027
+loss: 1.0794, acc: 0.4031
+loss: 1.0785, acc: 0.4035
+loss: 1.0701, acc: 0.4194
+loss: 1.0665, acc: 0.4244
+loss: 1.0649, acc: 0.4281
+loss: 1.0640, acc: 0.4293
+loss: 1.0619, acc: 0.4281
+> val_acc: 0.5219, val_f1: 0.3002
+> best_val_acc: 0.0000, best_val_f1: 0.0000
+>> saved: state_dict/igcn_embed_laptop_val_acc0.5219
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 1.0475, acc: 0.4531
+loss: 1.0252, acc: 0.5000
+loss: 1.0402, acc: 0.4609
+loss: 1.0394, acc: 0.4779
+loss: 1.0333, acc: 0.4872
+loss: 1.0255, acc: 0.5000
+loss: 1.0242, acc: 0.4961
+loss: 1.0241, acc: 0.5000
+loss: 1.0214, acc: 0.5030
+loss: 1.0176, acc: 0.5093
+loss: 1.0134, acc: 0.5150
+loss: 1.0147, acc: 0.5148
+loss: 1.0121, acc: 0.5156
+loss: 1.0130, acc: 0.5149
+loss: 1.0125, acc: 0.5139
+> val_acc: 0.5549, val_f1: 0.3822
+> best_val_acc: 0.5219, best_val_f1: 0.3002
+>> saved: state_dict/igcn_embed_laptop_val_acc0.5549
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 0.9407, acc: 0.5781
+loss: 0.9527, acc: 0.5799
+loss: 0.9572, acc: 0.5759
+loss: 0.9562, acc: 0.5872
+loss: 0.9444, acc: 0.5885
+loss: 0.9477, acc: 0.5787
+loss: 0.9408, acc: 0.5901
+loss: 0.9345, acc: 0.6026
+loss: 0.9308, acc: 0.6037
+loss: 0.9395, acc: 0.5950
+loss: 0.9330, acc: 0.5966
+loss: 0.9298, acc: 0.6012
+loss: 0.9279, acc: 0.5991

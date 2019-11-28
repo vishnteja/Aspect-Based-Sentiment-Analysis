@@ -1,0 +1,373 @@
+n_trainable_params: 1010203, n_nontrainable_params: 347432
+> training arguments:
+>>> model_name: igcn_embed
+>>> model_ver: 3
+>>> dataset: laptop
+>>> optimizer: <class 'torch.optim.adamax.Adamax'>
+>>> initializer: <function xavier_uniform_ at 0x7f699e4b3e18>
+>>> learning_rate: 0.002
+>>> momentum: 0.95
+>>> dropout: 0.35
+>>> l2reg: 5e-05
+>>> num_epoch: 30
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 136
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: d
+>>> max_seq_len: 300
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cpu
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> position_dim: 100
+>>> gating: GTU
+>>> stanford_pos_model: C:/NLP_Programs/stanford-postagger-2018-10-16/models/english-bidirectional-distsim.tagger
+>>> stanford_pos_jar: C:/NLP_Programs/stanford-postagger-2018-10-16/stanford-postagger.jar
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/100_laptop_domain_embedding_matrix.dat
+>>> model_class: <class 'models.igcn.IGCN'>
+>>> dataset_file: {'train': './datasets/semeval14/Laptops_Train.xml.seg', 'test': './datasets/semeval14/Laptops_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices', 'pos_indices', 'aspect_pos_indices', 'position_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.0936, acc: 0.3937
+loss: 1.0631, acc: 0.4156
+loss: 1.0229, acc: 0.4646
+loss: 1.0117, acc: 0.4797
+loss: 0.9773, acc: 0.5262
+n_trainable_params: 1010203, n_nontrainable_params: 347432
+> training arguments:
+>>> model_name: igcn_embed
+>>> model_ver: 3
+>>> dataset: laptop
+>>> optimizer: <class 'torch.optim.adamax.Adamax'>
+>>> initializer: <function xavier_uniform_ at 0x7f7ec0bdfe18>
+>>> learning_rate: 0.002
+>>> momentum: 0.95
+>>> dropout: 0.35
+>>> l2reg: 5e-05
+>>> num_epoch: 30
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 136
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: d
+>>> max_seq_len: 300
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cpu
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> position_dim: 100
+>>> gating: GTU
+>>> stanford_pos_model: C:/NLP_Programs/stanford-postagger-2018-10-16/models/english-bidirectional-distsim.tagger
+>>> stanford_pos_jar: C:/NLP_Programs/stanford-postagger-2018-10-16/stanford-postagger.jar
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/100_laptop_domain_embedding_matrix.dat
+>>> model_class: <class 'models.igcn.IGCN'>
+>>> dataset_file: {'train': './datasets/semeval14/Laptops_Train.xml.seg', 'test': './datasets/semeval14/Laptops_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices', 'pos_indices', 'aspect_pos_indices', 'position_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.0936, acc: 0.3937
+loss: 1.0631, acc: 0.4156
+loss: 1.0229, acc: 0.4646
+loss: 1.0117, acc: 0.4797
+loss: 0.9773, acc: 0.5262
+loss: 0.9700, acc: 0.5292
+loss: 0.9589, acc: 0.5393
+loss: 0.9428, acc: 0.5531
+loss: 0.9424, acc: 0.5549
+loss: 0.9344, acc: 0.5625
+loss: 0.9262, acc: 0.5653
+loss: 0.9143, acc: 0.5734
+loss: 0.9058, acc: 0.5788
+loss: 0.8943, acc: 0.5879
+> val_acc: 0.6332, val_f1: 0.5087
+> best_val_acc: 0.0000, best_val_f1: 0.0000
+>> saved: state_dict/igcn_embed_laptop_val_acc0.6332
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.6213, acc: 0.7344
+loss: 0.6905, acc: 0.7098
+loss: 0.7050, acc: 0.6979
+loss: 0.6984, acc: 0.7040
+loss: 0.6953, acc: 0.7060
+loss: 0.6845, acc: 0.7118
+loss: 0.6794, acc: 0.7188
+loss: 0.6754, acc: 0.7230
+loss: 0.6810, acc: 0.7210
+loss: 0.6747, acc: 0.7281
+loss: 0.6746, acc: 0.7302
+loss: 0.6825, acc: 0.7264
+loss: 0.6760, acc: 0.7334
+loss: 0.6765, acc: 0.7318
+loss: 0.6735, acc: 0.7348
+> val_acc: 0.6505, val_f1: 0.5472
+> best_val_acc: 0.6332, best_val_f1: 0.5087
+>> saved: state_dict/igcn_embed_laptop_val_acc0.6505
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+loss: 0.5572, acc: 0.8203
+loss: 0.6108, acc: 0.7674
+loss: 0.5932, acc: 0.7768
+loss: 0.5863, acc: 0.7845
+loss: 0.5763, acc: 0.7839
+loss: 0.5731, acc: 0.7866
+loss: 0.5791, acc: 0.7840
+loss: 0.5739, acc: 0.7821
+loss: 0.5704, acc: 0.7862
+loss: 0.5601, acc: 0.7946
+loss: 0.5616, acc: 0.7911
+loss: 0.5578, acc: 0.7929
+loss: 0.5596, acc: 0.7939
+loss: 0.5606, acc: 0.7894
+> val_acc: 0.6740, val_f1: 0.5816
+> best_val_acc: 0.6505, best_val_f1: 0.5472
+>> saved: state_dict/igcn_embed_laptop_val_acc0.674
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+loss: 0.4910, acc: 0.9062
+loss: 0.4332, acc: 0.8542
+loss: 0.4493, acc: 0.8466
+loss: 0.4429, acc: 0.8516
+loss: 0.4476, acc: 0.8542
+loss: 0.4444, acc: 0.8498
+loss: 0.4372, acc: 0.8538
+loss: 0.4334, acc: 0.8559
+loss: 0.4370, acc: 0.8498
+loss: 0.4451, acc: 0.8458
+loss: 0.4536, acc: 0.8395
+loss: 0.4575, acc: 0.8382
+loss: 0.4593, acc: 0.8376
+loss: 0.4573, acc: 0.8362
+loss: 0.4522, acc: 0.8389
+> val_acc: 0.6771, val_f1: 0.5955
+> best_val_acc: 0.6740, best_val_f1: 0.5816
+>> saved: state_dict/igcn_embed_laptop_val_acc0.6771
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+loss: 0.3606, acc: 0.9167
+loss: 0.3961, acc: 0.8750
+loss: 0.3917, acc: 0.8918
+loss: 0.3973, acc: 0.8976
+loss: 0.3836, acc: 0.8981
+loss: 0.3877, acc: 0.8895
+loss: 0.3847, acc: 0.8930
+loss: 0.3808, acc: 0.8947
+loss: 0.3700, acc: 0.8983
+loss: 0.3721, acc: 0.8913
+loss: 0.3675, acc: 0.8903
+loss: 0.3670, acc: 0.8917
+loss: 0.3675, acc: 0.8894
+loss: 0.3698, acc: 0.8869
+loss: 0.3678, acc: 0.8870
+> val_acc: 0.6803, val_f1: 0.6001
+> best_val_acc: 0.6771, best_val_f1: 0.5955
+>> saved: state_dict/igcn_embed_laptop_val_acc0.6803
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+loss: 0.3173, acc: 0.9125
+loss: 0.3043, acc: 0.9281
+loss: 0.3012, acc: 0.9292
+loss: 0.2968, acc: 0.9344
+loss: 0.2923, acc: 0.9325
+loss: 0.2934, acc: 0.9271
+loss: 0.2915, acc: 0.9250
+loss: 0.2971, acc: 0.9227
+loss: 0.3052, acc: 0.9181
+loss: 0.3038, acc: 0.9194
+loss: 0.3042, acc: 0.9170
+loss: 0.3011, acc: 0.9198
+loss: 0.2986, acc: 0.9197
+loss: 0.2946, acc: 0.9201
+> val_acc: 0.6740, val_f1: 0.5790
+> best_val_acc: 0.6803, best_val_f1: 0.6001
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+loss: 0.2394, acc: 0.9688
+loss: 0.2277, acc: 0.9732
+loss: 0.2227, acc: 0.9714
+loss: 0.2146, acc: 0.9706
+loss: 0.2165, acc: 0.9673
+loss: 0.2092, acc: 0.9722
+loss: 0.2119, acc: 0.9697
+loss: 0.2108, acc: 0.9696
+loss: 0.2134, acc: 0.9643
+loss: 0.2151, acc: 0.9621
+loss: 0.2182, acc: 0.9585
+loss: 0.2185, acc: 0.9600
+loss: 0.2182, acc: 0.9587
+loss: 0.2203, acc: 0.9576
+loss: 0.2254, acc: 0.9536
+> val_acc: 0.6599, val_f1: 0.5674
+> best_val_acc: 0.6803, best_val_f1: 0.6001
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+loss: 0.1584, acc: 0.9766
+loss: 0.1690, acc: 0.9653
+loss: 0.1703, acc: 0.9643
+loss: 0.1683, acc: 0.9671
+loss: 0.1661, acc: 0.9714
+loss: 0.1658, acc: 0.9741
+loss: 0.1683, acc: 0.9733
+loss: 0.1685, acc: 0.9712
+loss: 0.1676, acc: 0.9716
+loss: 0.1711, acc: 0.9694
+loss: 0.1703, acc: 0.9705
+loss: 0.1692, acc: 0.9725
+loss: 0.1705, acc: 0.9722
+loss: 0.1677, acc: 0.9728
+> val_acc: 0.6928, val_f1: 0.6243
+> best_val_acc: 0.6803, best_val_f1: 0.6001
+>> saved: state_dict/igcn_embed_laptop_val_acc0.6928
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+loss: 0.1186, acc: 1.0000
+loss: 0.1142, acc: 0.9896
+loss: 0.1154, acc: 0.9943
+loss: 0.1131, acc: 0.9922
+loss: 0.1176, acc: 0.9911
+loss: 0.1164, acc: 0.9916
+loss: 0.1200, acc: 0.9909
+loss: 0.1230, acc: 0.9896
+loss: 0.1243, acc: 0.9870
+loss: 0.1235, acc: 0.9871
+loss: 0.1252, acc: 0.9865
+loss: 0.1283, acc: 0.9866
+loss: 0.1279, acc: 0.9862
+loss: 0.1278, acc: 0.9858
+loss: 0.1280, acc: 0.9855
+> val_acc: 0.6677, val_f1: 0.5769
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+loss: 0.1009, acc: 0.9896
+loss: 0.1006, acc: 0.9961
+loss: 0.0974, acc: 0.9952
+loss: 0.0886, acc: 0.9965
+loss: 0.0903, acc: 0.9946
+loss: 0.0919, acc: 0.9955
+loss: 0.0922, acc: 0.9962
+loss: 0.0913, acc: 0.9942
+loss: 0.0913, acc: 0.9949
+loss: 0.0915, acc: 0.9948
+loss: 0.0917, acc: 0.9935
+loss: 0.0916, acc: 0.9935
+loss: 0.0926, acc: 0.9936
+loss: 0.0922, acc: 0.9931
+loss: 0.0935, acc: 0.9931
+> val_acc: 0.6755, val_f1: 0.5949
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 10
+loss: 0.0716, acc: 1.0000
+loss: 0.0703, acc: 1.0000
+loss: 0.0699, acc: 0.9979
+loss: 0.0669, acc: 0.9984
+loss: 0.0667, acc: 0.9988
+loss: 0.0664, acc: 0.9990
+loss: 0.0673, acc: 0.9991
+loss: 0.0684, acc: 0.9977
+loss: 0.0674, acc: 0.9979
+loss: 0.0670, acc: 0.9975
+loss: 0.0674, acc: 0.9977
+loss: 0.0676, acc: 0.9979
+loss: 0.0671, acc: 0.9981
+loss: 0.0682, acc: 0.9973
+> val_acc: 0.6708, val_f1: 0.5851
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 11
+loss: 0.0522, acc: 1.0000
+loss: 0.0492, acc: 1.0000
+loss: 0.0483, acc: 1.0000
+loss: 0.0497, acc: 0.9982
+loss: 0.0500, acc: 0.9986
+loss: 0.0491, acc: 0.9988
+loss: 0.0494, acc: 0.9980
+loss: 0.0501, acc: 0.9975
+loss: 0.0498, acc: 0.9978
+loss: 0.0499, acc: 0.9980
+loss: 0.0508, acc: 0.9982
+loss: 0.0506, acc: 0.9984
+loss: 0.0515, acc: 0.9985
+loss: 0.0527, acc: 0.9981
+loss: 0.0528, acc: 0.9983
+> val_acc: 0.6897, val_f1: 0.6175
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 12
+loss: 0.0429, acc: 1.0000
+loss: 0.0402, acc: 1.0000
+loss: 0.0420, acc: 1.0000
+loss: 0.0403, acc: 1.0000
+loss: 0.0397, acc: 1.0000
+loss: 0.0386, acc: 1.0000
+loss: 0.0395, acc: 0.9991
+loss: 0.0395, acc: 0.9992
+loss: 0.0398, acc: 0.9993
+loss: 0.0399, acc: 0.9987
+loss: 0.0398, acc: 0.9988
+loss: 0.0396, acc: 0.9989
+loss: 0.0393, acc: 0.9990
+loss: 0.0401, acc: 0.9991
+> val_acc: 0.6771, val_f1: 0.5927
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 13
+loss: 0.0248, acc: 1.0000
+loss: 0.0394, acc: 1.0000
+loss: 0.0345, acc: 1.0000
+loss: 0.0334, acc: 1.0000
+loss: 0.0315, acc: 1.0000
+loss: 0.0316, acc: 1.0000
+loss: 0.0308, acc: 1.0000
+loss: 0.0314, acc: 1.0000
+loss: 0.0305, acc: 1.0000
+loss: 0.0311, acc: 1.0000
+loss: 0.0314, acc: 1.0000
+loss: 0.0316, acc: 1.0000
+loss: 0.0315, acc: 1.0000
+loss: 0.0315, acc: 1.0000
+loss: 0.0315, acc: 1.0000
+> val_acc: 0.6865, val_f1: 0.6164
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 14
+loss: 0.0267, acc: 1.0000
+loss: 0.0243, acc: 1.0000
+loss: 0.0220, acc: 1.0000
+loss: 0.0247, acc: 0.9983
+loss: 0.0238, acc: 0.9986
+loss: 0.0247, acc: 0.9989
+loss: 0.0251, acc: 0.9991
+loss: 0.0263, acc: 0.9984
+loss: 0.0264, acc: 0.9985
+loss: 0.0263, acc: 0.9987
+loss: 0.0261, acc: 0.9988
+loss: 0.0260, acc: 0.9989
+loss: 0.0258, acc: 0.9990
+loss: 0.0256, acc: 0.9991
+loss: 0.0255, acc: 0.9991
+> val_acc: 0.6865, val_f1: 0.6143
+> best_val_acc: 0.6928, best_val_f1: 0.6243
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 15
+loss: 0.0172, acc: 1.0000

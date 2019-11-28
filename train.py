@@ -17,7 +17,7 @@ from torch.utils.data import DataLoader, random_split
 from data_utils import build_tokenizer, build_embedding_matrix, build_pos_tagger, ABSADataset
 
 from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN, GCAE
-from models import GC_IAN1, GC_IAN2, GC_IAN3
+from models import GC_IAN1, GC_IAN2, GC_IAN3, GC_EMBED1, GC_EMBED2, GC_EMBED3, IGCN, IGCN_2, IGCN_3, IGCN_4
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -33,25 +33,45 @@ class Instructor:
       # tokenizer = Tokenizer4Bert(opt.max_seq_len, opt.pretrained_bert_name)
       # bert = BertModel.from_pretrained(opt.pretrained_bert_name)
       # self.model = opt.model_class(bert, opt).to(opt.device)
-      x = 1
+      pass
     else:
       tokenizer = build_tokenizer(
           fnames=[opt.dataset_file['train'], opt.dataset_file['test']],
           max_seq_len=opt.max_seq_len,
           dat_fname='gen_data/tokenizer/{0}_tokenizer.dat'.format(opt.dataset))
-      pos_tagger = build_pos_tagger(modelfile=opt.stanford_pos_model, jarfile=opt.stanford_pos_jar)
+      pos_tagger_train = build_pos_tagger(
+          fname=opt.dataset_file['train'],
+          dat_fname="gen_data/pos/pos_tagger_{}_train.dat".format(opt.dataset),
+          modelfile=opt.stanford_pos_model,
+          jarfile=opt.stanford_pos_jar,
+          tokenizer=tokenizer)
       embedding_matrix = build_embedding_matrix(
           glove_path=opt.glove_path,
           word2idx=tokenizer.word2idx,
           embed_dim=opt.embed_dim,
           dat_fname=opt.embedding_matrix_path)
-          if "extra" in opt.model_name:
-            self.model = opt.model_class(embedding_matrix, pos_tagger.index2vec, opt).to(opt.device)
-          else:
-            self.model = opt.model_class(embedding_matrix, opt).to(opt.device)
+      if "embed" in opt.model_name:
+        self.model = opt.model_class(embedding_matrix,
+                                     pos_tagger_train.index2vec,
+                                     opt).to(opt.device)
+      else:
+        self.model = opt.model_class(embedding_matrix, opt).to(opt.device)
 
-    self.trainset = ABSADataset(opt.dataset_file['train'], tokenizer, pos_tagger)
-    self.testset = ABSADataset(opt.dataset_file['test'], tokenizer, pos_tagger)
+    pos_tagger_test = build_pos_tagger(
+        fname=opt.dataset_file['test'],
+        dat_fname="gen_data/pos/pos_tagger_{}_test.dat".format(opt.dataset),
+        modelfile=opt.stanford_pos_model,
+        jarfile=opt.stanford_pos_jar,
+        tokenizer=tokenizer)
+    self.trainset = ABSADataset(
+        opt.dataset_file['train'],
+        'gen_data/dataset/{}_train_dataset.dat'.format(opt.dataset), tokenizer,
+        pos_tagger_train)
+    self.testset = ABSADataset(
+        opt.dataset_file['test'],
+        'gen_data/dataset/{}_test_dataset.dat'.format(opt.dataset), tokenizer,
+        pos_tagger_test)
+
     assert 0 <= opt.valset_ratio < 1
     if opt.valset_ratio > 0:
       valset_len = int(len(self.trainset) * opt.valset_ratio)
@@ -105,7 +125,6 @@ class Instructor:
         global_step += 1
         # clear gradient accumulators
         optimizer.zero_grad()
-
         inputs = [
             sample_batched[col].to(self.opt.device)
             for col in self.opt.inputs_cols
@@ -127,6 +146,8 @@ class Instructor:
 
       val_acc, val_f1 = self._evaluate_acc_f1(val_data_loader)
       logger.info('> val_acc: {:.4f}, val_f1: {:.4f}'.format(val_acc, val_f1))
+      logger.info('> best_val_acc: {:.4f}, best_val_f1: {:.4f}'.format(
+          max_val_acc, max_val_f1))
       if val_acc > max_val_acc:
         max_val_acc = val_acc
         if not os.path.exists('state_dict'):
@@ -186,7 +207,7 @@ class Instructor:
         dataset=self.testset, batch_size=self.opt.batch_size, shuffle=False)
     val_data_loader = DataLoader(
         dataset=self.valset, batch_size=self.opt.batch_size, shuffle=False)
-
+    torch.cuda.empty_cache()
     self._reset_params()
     best_model_path = self._train(criterion, optimizer, train_data_loader,
                                   val_data_loader)
@@ -254,9 +275,10 @@ def main():
   parser.add_argument('--downbot', default=config.DOWNBOT, type=int)
   parser.add_argument('--kernel_size', default=config.KERNEL_SIZE, type=int)
   parser.add_argument('--position_dim', default=config.POSITION_DIM, type=int)
+  parser.add_argument('--gating', default=config.GATING, type=str)
   opt = parser.parse_args()
 
-  if opt.seed is not None or opt.seed != 0:
+  if opt.seed != 0:
     random.seed(opt.seed)
     numpy.random.seed(opt.seed)
     torch.manual_seed(opt.seed)
@@ -289,8 +311,20 @@ def main():
           '1': GC_IAN1,
           '2': GC_IAN2,
           '3': GC_IAN3
+      },
+      'gc_embed': {
+          '1': GC_EMBED1,
+          '2': GC_EMBED2,
+          '3': GC_EMBED3
+      },
+      'igcn_embed': {
+          '1': IGCN,
+          '2': IGCN_2,
+          '3': IGCN_3,
+          '4': IGCN_4
       }
   }
+
   dataset_files = {
       'twitter': {
           'train': './datasets/acl-14-short-data/train.raw',
@@ -321,6 +355,14 @@ def main():
       'gcnn': ['text_raw_indices'],
       'gcae': ['text_raw_indices', 'aspect_indices'],
       'gc_ian': ['text_raw_indices', 'aspect_indices'],
+      'gc_embed': [
+          'text_raw_indices', 'aspect_indices', 'pos_indices',
+          'aspect_pos_indices', 'position_indices'
+      ],
+      'igcn_embed': [
+          'text_raw_indices', 'aspect_indices', 'pos_indices',
+          'aspect_pos_indices', 'position_indices'
+      ]
   }
 
   initializers = {
@@ -337,6 +379,13 @@ def main():
       'rmsprop': torch.optim.RMSprop,  # default lr=0.01
       'sgd': torch.optim.SGD,
   }
+  # Pos Tagger Variables
+  stanford_dir = "C:/NLP_Programs/stanford-postagger-2018-10-16"
+  modelfile = stanford_dir + "/models/english-bidirectional-distsim.tagger"
+  jarfile = stanford_dir + "/stanford-postagger.jar"
+
+  opt.stanford_pos_model = modelfile
+  opt.stanford_pos_jar = jarfile
 
   opt.glove_path = './embeddings/glove.840B.300d.txt'
   opt.embedding_matrix_path = emebeddings[opt.embeddings]

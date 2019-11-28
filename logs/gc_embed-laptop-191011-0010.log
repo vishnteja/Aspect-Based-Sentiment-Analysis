@@ -1,0 +1,55 @@
+cuda memory allocated: 6259712
+n_trainable_params: 1213603, n_nontrainable_params: 347432
+> training arguments:
+>>> model_name: gc_embed
+>>> model_ver: 2
+>>> dataset: laptop
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x000001F980F63E18>
+>>> learning_rate: 0.0003
+>>> momentum: 0.95
+>>> dropout: 0.6
+>>> l2reg: 5e-05
+>>> num_epoch: 50
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 100
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: d
+>>> max_seq_len: 80
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> position_dim: 100
+>>> stanford_pos_model: C:/NLP_Programs/stanford-postagger-2018-10-16/models/english-bidirectional-distsim.tagger
+>>> stanford_pos_jar: C:/NLP_Programs/stanford-postagger-2018-10-16/stanford-postagger.jar
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/100_laptop_domain_embedding_matrix.dat
+>>> model_class: <class 'models.gc_embed.GC_EMBED2'>
+>>> dataset_file: {'train': './datasets/semeval14/Laptops_Train.xml.seg', 'test': './datasets/semeval14/Laptops_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices', 'pos_indices', 'aspect_pos_indices', 'position_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.2147, acc: 0.2500
+loss: 1.1620, acc: 0.2969
+loss: 1.1279, acc: 0.3479
+loss: 1.1122, acc: 0.3750
+loss: 1.1162, acc: 0.3850
+loss: 1.1091, acc: 0.3948
+loss: 1.0988, acc: 0.4089
+loss: 1.0921, acc: 0.4156
+loss: 1.0844, acc: 0.4257
+loss: 1.0756, acc: 0.4363
+loss: 1.0706, acc: 0.4409
+loss: 1.0663, acc: 0.4448
+loss: 1.0618, acc: 0.4534
+loss: 1.0573, acc: 0.4589
