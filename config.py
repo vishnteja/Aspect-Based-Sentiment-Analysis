@@ -1,5 +1,5 @@
 MODEL_NAME = 'igcn_embed'
-MODEL_VER = '1'
+MODEL_VER = '5'
 DATASET = 'laptop'
 OPTIMIZER = 'adam'
 INITIALIZER = 'xavier_uniform_'
@@ -20,6 +20,9 @@ EMBEDDINGS = 'd'
 
 # Gating options
 GATING = 'GTU'
+
+# Gating scores
+EVAL = False
 
 # Position Dim
 POSITION_DIM = 100

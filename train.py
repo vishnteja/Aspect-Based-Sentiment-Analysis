@@ -17,7 +17,7 @@ from torch.utils.data import DataLoader, random_split
 from data_utils import build_tokenizer, build_embedding_matrix, build_pos_tagger, ABSADataset
 
 from models import LSTM, IAN, TD_LSTM, TC_LSTM, AT_LSTM, ATAE_LSTM, AOA, Gated_CNN, GCAE
-from models import GC_IAN1, GC_IAN2, GC_IAN3, GC_EMBED1, GC_EMBED2, GC_EMBED3, IGCN, IGCN_2, IGCN_3, IGCN_4
+from models import GC_IAN1, GC_IAN2, GC_IAN3, GC_EMBED1, GC_EMBED2, GC_EMBED3, IGCN, IGCN_2, IGCN_3, IGCN_4, IGCN_5
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -83,6 +83,7 @@ class Instructor:
     if opt.device.type == 'cuda':
       logger.info('cuda memory allocated: {}'.format(
           torch.cuda.memory_allocated(device=opt.device.index)))
+    self.tokenizer = tokenizer
     self._print_args()
 
   def _print_args(self):
@@ -129,7 +130,10 @@ class Instructor:
             sample_batched[col].to(self.opt.device)
             for col in self.opt.inputs_cols
         ]
-        outputs = self.model(inputs)
+        if self.opt.eval:
+          outputs, _, _ = self.model(inputs)
+        else:
+          outputs = self.model(inputs)
         targets = sample_batched['polarity'].to(self.opt.device)
 
         loss = criterion(outputs, targets)
@@ -152,9 +156,14 @@ class Instructor:
         max_val_acc = val_acc
         if not os.path.exists('state_dict'):
           os.mkdir('state_dict')
-        path = 'state_dict/{0}_{1}_val_acc{2}'.format(self.opt.model_name,
-                                                      self.opt.dataset,
-                                                      round(val_acc, 4))
+        if self.opt.model_name == 'igcn_embed':
+          path = 'state_dict/{0}_{1}_{2}_val_acc{3}'.format(
+              self.opt.model_name, self.opt.model_ver, self.opt.dataset,
+              round(val_acc, 4))
+        else:
+          path = 'state_dict/{0}_{1}_val_acc{2}'.format(self.opt.model_name,
+                                                        self.opt.dataset,
+                                                        round(val_acc, 4))
         torch.save(self.model.state_dict(), path)
         logger.info('>> saved: {}'.format(path))
       if val_f1 > max_val_f1:
@@ -164,7 +173,9 @@ class Instructor:
 
   def _evaluate_acc_f1(self, data_loader):
     n_correct, n_total = 0, 0
+    t_inputs_all = None
     t_targets_all, t_outputs_all = None, None
+    cg_all_1, cg_all_3, ag_all_1, ag_all_3 = None, None, None, None
     # switch model to evaluation mode
     self.model.eval()
     with torch.no_grad():
@@ -174,7 +185,11 @@ class Instructor:
             for col in self.opt.inputs_cols
         ]
         t_targets = t_sample_batched['polarity'].to(self.opt.device)
-        t_outputs = self.model(t_inputs)
+        if self.opt.eval:
+          t_outputs, context_gate_scores, aspect_gate_scores = self.model(
+              t_inputs)
+        else:
+          t_outputs = self.model(t_inputs)
 
         n_correct += (torch.argmax(t_outputs, -1) == t_targets).sum().item()
         n_total += len(t_outputs)
@@ -182,9 +197,23 @@ class Instructor:
         if t_targets_all is None:
           t_targets_all = t_targets
           t_outputs_all = t_outputs
+          if self.opt.eval:
+            t_inputs_all = t_inputs[0]
+            t_aspect_all = t_inputs[1]
+            cg_all_1 = context_gate_scores[0]
+            cg_all_3 = context_gate_scores[1]
+            ag_all_1 = aspect_gate_scores[0]
+            ag_all_3 = aspect_gate_scores[1]
         else:
           t_targets_all = torch.cat((t_targets_all, t_targets), dim=0)
           t_outputs_all = torch.cat((t_outputs_all, t_outputs), dim=0)
+          if self.opt.eval:
+            t_inputs_all = torch.cat((t_inputs_all, t_inputs[0]), dim=0)
+            t_aspect_all = torch.cat((t_aspect_all, t_inputs[1]), dim=0)
+            cg_all_1 = torch.cat((cg_all_1, context_gate_scores[0]), dim=0)
+            ag_all_1 = torch.cat((ag_all_1, aspect_gate_scores[0]), dim=0)
+            cg_all_3 = torch.cat((cg_all_3, context_gate_scores[1]), dim=0)
+            ag_all_3 = torch.cat((ag_all_3, aspect_gate_scores[1]), dim=0)
 
     acc = n_correct / n_total
     f1 = metrics.f1_score(
@@ -192,6 +221,35 @@ class Instructor:
         torch.argmax(t_outputs_all, -1).cpu(),
         labels=[0, 1, 2],
         average='macro')
+    if self.opt.eval:
+      input_seq = t_inputs_all.cpu().numpy()
+      input_text = [self.tokenizer.sequence_to_text(sq) for sq in input_seq]
+      aspect_seq = t_aspect_all.cpu().numpy()
+      aspect_text = [self.tokenizer.sequence_to_text(sq) for sq in aspect_seq]
+      targets = t_targets_all.cpu().numpy()
+      outputs = torch.argmax(t_outputs_all, -1).cpu().numpy()
+      cg_all_1 = cg_all_1.cpu().numpy()
+      ag_all_1 = ag_all_1.cpu().numpy()
+      cg_all_3 = cg_all_3.cpu().numpy()
+      ag_all_3 = ag_all_3.cpu().numpy()
+
+      string_to_write = ""
+      for i in range(0, len(input_text)):
+        outstr = ''
+        outstr += input_text[i] + "\n"
+        outstr += aspect_text[i] + "\n"
+        outstr += "Predicted: " + str(outputs[i]) + "\t" + " Actual: " + str(
+            targets[i]) + '\t' + '\n\n'
+        cg1 = "\t".join([str(x) for x in cg_all_1[i]]) + '\n'
+        # cg3 = '\t'.join([str(x) for x in cg_all_3[i]]) + '\n'
+        ag1 = "\t".join([str(x) for x in ag_all_1[i]]) + '\n'
+        # ag3 = '\t'.join([str(x) for x in ag_all_3[i]]) + '\n'
+
+        outstr += cg1 + ag1 + '\n\n'
+        string_to_write += outstr
+      with open('analyze_igcn_' + self.opt.dataset + '.txt', 'w') as f:
+        f.write(string_to_write)
+
     return acc, f1
 
   def run(self):
@@ -276,6 +334,7 @@ def main():
   parser.add_argument('--kernel_size', default=config.KERNEL_SIZE, type=int)
   parser.add_argument('--position_dim', default=config.POSITION_DIM, type=int)
   parser.add_argument('--gating', default=config.GATING, type=str)
+  parser.add_argument('--eval', default=config.EVAL, type=bool)
   opt = parser.parse_args()
 
   if opt.seed != 0:
@@ -318,10 +377,11 @@ def main():
           '3': GC_EMBED3
       },
       'igcn_embed': {
-          '1': IGCN,
-          '2': IGCN_2,
-          '3': IGCN_3,
-          '4': IGCN_4
+          '1': IGCN,  # Final
+          '2': IGCN_2,  # Aspect2Context
+          '3': IGCN_3,  # Context2Aspect
+          '4': IGCN_4,  # Context + Aspect
+          '5': IGCN_5  # Context
       }
   }
 
@@ -401,8 +461,13 @@ def main():
 
   if not os.path.exists('logs'):
     os.mkdir('logs')
-  log_file = 'logs/{}-{}-{}.log'.format(opt.model_name, opt.dataset,
-                                        strftime("%y%m%d-%H%M", localtime()))
+  if opt.model_name == 'igcn_embed':
+    log_file = 'logs/{}-{}-{}-{}.log'.format(
+        opt.model_name, opt.model_ver, opt.dataset,
+        strftime("%y%m%d-%H%M", localtime()))
+  else:
+    log_file = 'logs/{}-{}-{}.log'.format(opt.model_name, opt.dataset,
+                                          strftime("%y%m%d-%H%M", localtime()))
   logger.addHandler(logging.FileHandler(log_file))
 
   ins = Instructor(opt)

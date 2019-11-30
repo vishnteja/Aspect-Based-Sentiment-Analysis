@@ -1,0 +1,85 @@
+cuda memory allocated: 3061760
+n_trainable_params: 321903, n_nontrainable_params: 442532
+> training arguments:
+>>> model_name: igcn_embed
+>>> model_ver: 5
+>>> dataset: restaurant
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x000002B627294EA0>
+>>> learning_rate: 0.0003
+>>> momentum: 0.95
+>>> dropout: 0.5
+>>> l2reg: 5e-05
+>>> num_epoch: 50
+>>> batch_size: 32
+>>> log_step: 5
+>>> embed_dim: 136
+>>> hidden_dim: 300
+>>> bert_dim: 768
+>>> pretrained_bert_name: bert-base-uncased
+>>> embeddings: d
+>>> max_seq_len: 180
+>>> polarities_dim: 3
+>>> hops: 3
+>>> device: cuda
+>>> seed: 0
+>>> valset_ratio: 0
+>>> num_layers: 1
+>>> in_channels: 100
+>>> out_channels: 1
+>>> downbot: 20
+>>> kernel_size: 3
+>>> position_dim: 100
+>>> gating: GTU
+>>> eval: False
+>>> stanford_pos_model: C:/NLP_Programs/stanford-postagger-2018-10-16/models/english-bidirectional-distsim.tagger
+>>> stanford_pos_jar: C:/NLP_Programs/stanford-postagger-2018-10-16/stanford-postagger.jar
+>>> glove_path: ./embeddings/glove.840B.300d.txt
+>>> embedding_matrix_path: gen_data/embeddings/100_restaurant_domain_embedding_matrix.dat
+>>> model_class: <class 'models.igcn.IGCN_5'>
+>>> dataset_file: {'train': './datasets/semeval14/Restaurants_Train.xml.seg', 'test': './datasets/semeval14/Restaurants_Test_Gold.xml.seg'}
+>>> inputs_cols: ['text_raw_indices', 'aspect_indices', 'pos_indices', 'aspect_pos_indices', 'position_indices']
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+loss: 1.5245, acc: 0.2437
+loss: 1.3396, acc: 0.3406
+loss: 1.2441, acc: 0.4083
+loss: 1.2275, acc: 0.4344
+loss: 1.1797, acc: 0.4662
+loss: 1.1367, acc: 0.4823
+loss: 1.1105, acc: 0.5000
+loss: 1.0924, acc: 0.5125
+loss: 1.0858, acc: 0.5194
+loss: 1.0739, acc: 0.5281
+loss: 1.0640, acc: 0.5335
+loss: 1.0561, acc: 0.5365
+loss: 1.0523, acc: 0.5356
+loss: 1.0470, acc: 0.5415
+loss: 1.0385, acc: 0.5442
+loss: 1.0310, acc: 0.5477
+loss: 1.0274, acc: 0.5493
+loss: 1.0197, acc: 0.5514
+loss: 1.0131, acc: 0.5556
+loss: 1.0090, acc: 0.5584
+loss: 1.0048, acc: 0.5598
+loss: 1.0080, acc: 0.5568
+> val_acc: 0.6589, val_f1: 0.2971
+> best_val_acc: 0.0000, best_val_f1: 0.0000
+>> saved: state_dict/igcn_embed_restaurant_val_acc0.6589
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+loss: 0.9262, acc: 0.5156
+loss: 0.9120, acc: 0.5402
+loss: 0.8597, acc: 0.5990
+loss: 0.8767, acc: 0.5956
+loss: 0.8838, acc: 0.5923
+loss: 0.8808, acc: 0.5949
+loss: 0.8742, acc: 0.5986
+loss: 0.8689, acc: 0.6064
+loss: 0.8684, acc: 0.6079
+loss: 0.8669, acc: 0.6090
+loss: 0.8640, acc: 0.6094
+loss: 0.8636, acc: 0.6096
+loss: 0.8604, acc: 0.6169
+loss: 0.8614, acc: 0.6161
+loss: 0.8581, acc: 0.6185

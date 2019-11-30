@@ -166,6 +166,7 @@ class Tokenizer(object):
     self.max_seq_len = max_seq_len
     self.word2idx = {}
     self.idx2word = {}
+    self.idx2word[0] = 'pad'
     self.idx = 1
 
   def fit_on_text(self, text):
@@ -198,6 +199,13 @@ class Tokenizer(object):
       sequence = sequence[::-1]
     return pad_and_truncate(
         sequence, self.max_seq_len, padding=padding, truncating=truncating)
+
+  def sequence_to_text(self, sequence):
+    text = ""
+    for i in sequence:
+      word = self.idx2word[i]
+      text += word + " \t "
+    return text
 
   def position_to_sequence(self,
                            text_left,
